@@ -1,0 +1,23 @@
+{
+  "projectRoot": "/Users/adam_solomon_home/Downloads/ai201-project5-mixtape-starter",
+  "batchFiles": [
+    {"path": "README.md", "language": "markdown", "sizeLines": 117, "fileCategory": "docs"},
+    {"path": "requirements.txt", "language": "txt", "sizeLines": 5, "fileCategory": "docs"},
+    {"path": "routes/__init__.py", "language": "python", "sizeLines": 0, "fileCategory": "code"},
+    {"path": "routes/feed.py", "language": "python", "sizeLines": 24, "fileCategory": "code"},
+    {"path": "services/__init__.py", "language": "python", "sizeLines": 0, "fileCategory": "code"},
+    {"path": "services/feed_service.py", "language": "python", "sizeLines": 105, "fileCategory": "code"},
+    {"path": "tests/__init__.py", "language": "python", "sizeLines": 0, "fileCategory": "code"},
+    {"path": ".understand-anything/.understandignore", "language": "unknown", "sizeLines": 45, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    ".understand-anything/.understandignore": [],
+    "README.md": [],
+    "requirements.txt": [],
+    "routes/__init__.py": [],
+    "routes/feed.py": ["services/feed_service.py"],
+    "services/__init__.py": [],
+    "services/feed_service.py": ["app.py", "models.py"],
+    "tests/__init__.py": []
+  }
+}

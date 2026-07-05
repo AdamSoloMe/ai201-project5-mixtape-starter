@@ -1,0 +1,240 @@
+{
+  "scriptCompleted": true,
+  "directoryGroups": {
+    "root": [
+      "file:app.py",
+      "file:models.py",
+      "file:seed_data.py",
+      "document:README.md",
+      "config:requirements.txt"
+    ],
+    "services": [
+      "file:services/playlist_service.py",
+      "file:services/streak_service.py",
+      "file:services/notification_service.py",
+      "file:services/search_service.py",
+      "file:services/__init__.py",
+      "file:services/feed_service.py"
+    ],
+    "tests": [
+      "file:tests/test_playlists.py",
+      "file:tests/test_streaks.py",
+      "file:tests/test_search.py",
+      "file:tests/__init__.py"
+    ],
+    "routes": [
+      "file:routes/playlists.py",
+      "file:routes/users.py",
+      "file:routes/songs.py",
+      "file:routes/__init__.py",
+      "file:routes/feed.py"
+    ],
+    ".understand-anything": [
+      "config:.understand-anything/.understandignore"
+    ]
+  },
+  "nodeTypeGroups": {
+    "file": [
+      "file:app.py",
+      "file:models.py",
+      "file:seed_data.py",
+      "file:services/playlist_service.py",
+      "file:services/streak_service.py",
+      "file:tests/test_playlists.py",
+      "file:tests/test_streaks.py",
+      "file:routes/playlists.py",
+      "file:routes/users.py",
+      "file:services/notification_service.py",
+      "file:routes/songs.py",
+      "file:services/search_service.py",
+      "file:tests/test_search.py",
+      "file:routes/__init__.py",
+      "file:routes/feed.py",
+      "file:services/__init__.py",
+      "file:services/feed_service.py",
+      "file:tests/__init__.py"
+    ],
+    "document": [
+      "document:README.md"
+    ],
+    "config": [
+      "config:requirements.txt",
+      "config:.understand-anything/.understandignore"
+    ]
+  },
+  "crossCategoryEdges": [
+    {
+      "fromType": "document",
+      "toType": "file",
+      "edgeType": "documents",
+      "count": 2
+    },
+    {
+      "fromType": "config",
+      "toType": "file",
+      "edgeType": "configures",
+      "count": 1
+    }
+  ],
+  "interGroupImports": [
+    {
+      "from": "routes",
+      "to": "services",
+      "count": 7
+    },
+    {
+      "from": "services",
+      "to": "root",
+      "count": 10
+    },
+    {
+      "from": "tests",
+      "to": "root",
+      "count": 6
+    },
+    {
+      "from": "tests",
+      "to": "services",
+      "count": 3
+    }
+  ],
+  "intraGroupDensity": {
+    "root": {
+      "internalEdges": 2,
+      "totalEdges": 18,
+      "density": 0.11
+    },
+    "services": {
+      "internalEdges": 0,
+      "totalEdges": 20,
+      "density": 0
+    },
+    "tests": {
+      "internalEdges": 0,
+      "totalEdges": 9,
+      "density": 0
+    },
+    "routes": {
+      "internalEdges": 0,
+      "totalEdges": 7,
+      "density": 0
+    },
+    ".understand-anything": {
+      "internalEdges": 0,
+      "totalEdges": 0,
+      "density": 0
+    }
+  },
+  "patternMatches": {
+    "root": "root",
+    "services": "service",
+    "tests": "test",
+    "routes": "api",
+    ".understand-anything": "unknown"
+  },
+  "deploymentTopology": {
+    "hasDockerfile": false,
+    "hasCompose": false,
+    "hasK8s": false,
+    "hasTerraform": false,
+    "hasCI": false,
+    "infraFiles": []
+  },
+  "dataPipeline": {
+    "schemaFiles": [],
+    "migrationFiles": [],
+    "dataModelFiles": [],
+    "apiHandlerFiles": [
+      "routes/playlists.py",
+      "routes/users.py",
+      "routes/songs.py",
+      "routes/__init__.py",
+      "routes/feed.py"
+    ]
+  },
+  "docCoverage": {
+    "groupsWithDocs": 5,
+    "totalGroups": 5,
+    "coverageRatio": 1,
+    "undocumentedGroups": []
+  },
+  "dependencyDirection": [
+    {
+      "dependent": "routes",
+      "dependsOn": "services"
+    },
+    {
+      "dependent": "services",
+      "dependsOn": "root"
+    },
+    {
+      "dependent": "tests",
+      "dependsOn": "root"
+    },
+    {
+      "dependent": "tests",
+      "dependsOn": "services"
+    }
+  ],
+  "fileStats": {
+    "totalFileNodes": 21,
+    "filesPerGroup": {
+      "root": 5,
+      "services": 6,
+      "tests": 4,
+      "routes": 5,
+      ".understand-anything": 1
+    },
+    "nodeTypeCounts": {
+      "file": 18,
+      "document": 1,
+      "config": 2
+    }
+  },
+  "fileFanIn": {
+    "file:app.py": 9,
+    "file:models.py": 9,
+    "file:seed_data.py": 0,
+    "file:services/playlist_service.py": 2,
+    "file:services/streak_service.py": 3,
+    "file:tests/test_playlists.py": 0,
+    "file:tests/test_streaks.py": 0,
+    "file:routes/playlists.py": 0,
+    "file:routes/users.py": 0,
+    "file:services/notification_service.py": 2,
+    "file:routes/songs.py": 0,
+    "file:services/search_service.py": 2,
+    "file:tests/test_search.py": 0,
+    "document:README.md": 0,
+    "config:requirements.txt": 0,
+    "file:routes/__init__.py": 0,
+    "file:routes/feed.py": 0,
+    "file:services/__init__.py": 0,
+    "file:services/feed_service.py": 1,
+    "file:tests/__init__.py": 0,
+    "config:.understand-anything/.understandignore": 0
+  },
+  "fileFanOut": {
+    "file:app.py": 0,
+    "file:models.py": 0,
+    "file:seed_data.py": 2,
+    "file:services/playlist_service.py": 2,
+    "file:services/streak_service.py": 2,
+    "file:tests/test_playlists.py": 3,
+    "file:tests/test_streaks.py": 3,
+    "file:routes/playlists.py": 2,
+    "file:routes/users.py": 1,
+    "file:services/notification_service.py": 2,
+    "file:routes/songs.py": 3,
+    "file:services/search_service.py": 2,
+    "file:tests/test_search.py": 3,
+    "document:README.md": 0,
+    "config:requirements.txt": 0,
+    "file:routes/__init__.py": 0,
+    "file:routes/feed.py": 1,
+    "file:services/__init__.py": 0,
+    "file:services/feed_service.py": 2,
+    "file:tests/__init__.py": 0,
+    "config:.understand-anything/.understandignore": 0
+  }
+}

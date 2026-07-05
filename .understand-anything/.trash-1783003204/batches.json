@@ -1,0 +1,638 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "louvain",
+  "totalFiles": 21,
+  "totalBatches": 4,
+  "exportsByPath": {
+    ".understand-anything/.understandignore": [],
+    "app.py": [
+      "create_app"
+    ],
+    "models.py": [
+      "generate_uuid",
+      "User",
+      "Tag",
+      "Song",
+      "ListeningEvent",
+      "Rating",
+      "Playlist",
+      "Notification"
+    ],
+    "routes/__init__.py": [],
+    "routes/feed.py": [
+      "listening_now",
+      "activity"
+    ],
+    "routes/playlists.py": [
+      "create",
+      "get_detail",
+      "get_songs",
+      "add_song"
+    ],
+    "routes/songs.py": [
+      "search",
+      "get_song_detail",
+      "rate",
+      "listen"
+    ],
+    "routes/users.py": [
+      "get_user",
+      "streak",
+      "notifications",
+      "read_notification"
+    ],
+    "seed_data.py": [
+      "seed"
+    ],
+    "services/__init__.py": [],
+    "services/feed_service.py": [
+      "get_friends_listening_now",
+      "get_activity_feed"
+    ],
+    "services/notification_service.py": [
+      "create_notification",
+      "add_to_playlist",
+      "rate_song",
+      "get_notifications",
+      "mark_as_read"
+    ],
+    "services/playlist_service.py": [
+      "create_playlist",
+      "get_playlist_songs",
+      "get_playlist",
+      "get_user_playlists"
+    ],
+    "services/search_service.py": [
+      "search_songs",
+      "get_song"
+    ],
+    "services/streak_service.py": [
+      "record_listening_event",
+      "update_listening_streak",
+      "get_streak"
+    ],
+    "tests/__init__.py": [],
+    "tests/test_playlists.py": [
+      "app",
+      "seed_playlist",
+      "test_playlist_returns_all_songs",
+      "test_playlist_returns_songs_in_order",
+      "test_empty_playlist_returns_empty_list"
+    ],
+    "tests/test_search.py": [
+      "app",
+      "seed_songs",
+      "test_search_returns_matching_songs",
+      "test_search_no_duplicates_single_tag_song",
+      "test_search_no_duplicates_multi_tag_song",
+      "test_search_no_duplicates_no_tag_song",
+      "test_search_returns_empty_for_no_match"
+    ],
+    "tests/test_streaks.py": [
+      "app",
+      "user",
+      "test_streak_starts_at_1_for_new_user",
+      "test_streak_increments_on_consecutive_day",
+      "test_streak_does_not_double_count_same_day",
+      "test_streak_resets_after_skipped_day",
+      "test_streak_increments_on_sunday"
+    ]
+  },
+  "batches": [
+    {
+      "batchIndex": 1,
+      "files": [
+        {
+          "path": "app.py",
+          "language": "python",
+          "sizeLines": 48,
+          "fileCategory": "code"
+        },
+        {
+          "path": "models.py",
+          "language": "python",
+          "sizeLines": 177,
+          "fileCategory": "code"
+        },
+        {
+          "path": "seed_data.py",
+          "language": "python",
+          "sizeLines": 187,
+          "fileCategory": "code"
+        },
+        {
+          "path": "services/playlist_service.py",
+          "language": "python",
+          "sizeLines": 96,
+          "fileCategory": "code"
+        },
+        {
+          "path": "services/streak_service.py",
+          "language": "python",
+          "sizeLines": 94,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_playlists.py",
+          "language": "python",
+          "sizeLines": 86,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_streaks.py",
+          "language": "python",
+          "sizeLines": 96,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "app.py": [],
+        "models.py": [
+          "app.py"
+        ],
+        "seed_data.py": [
+          "app.py",
+          "models.py"
+        ],
+        "services/playlist_service.py": [
+          "app.py",
+          "models.py"
+        ],
+        "services/streak_service.py": [
+          "app.py",
+          "models.py"
+        ],
+        "tests/test_playlists.py": [
+          "app.py",
+          "models.py",
+          "services/playlist_service.py"
+        ],
+        "tests/test_streaks.py": [
+          "app.py",
+          "models.py",
+          "services/streak_service.py"
+        ]
+      },
+      "neighborMap": {
+        "app.py": [
+          {
+            "path": "routes/users.py",
+            "batchIndex": 2,
+            "symbols": [
+              "get_user",
+              "streak",
+              "notifications",
+              "read_notification"
+            ]
+          },
+          {
+            "path": "services/feed_service.py",
+            "batchIndex": 4,
+            "symbols": [
+              "get_friends_listening_now",
+              "get_activity_feed"
+            ]
+          },
+          {
+            "path": "services/notification_service.py",
+            "batchIndex": 2,
+            "symbols": [
+              "create_notification",
+              "add_to_playlist",
+              "rate_song",
+              "get_notifications",
+              "mark_as_read"
+            ]
+          },
+          {
+            "path": "services/search_service.py",
+            "batchIndex": 3,
+            "symbols": [
+              "search_songs",
+              "get_song"
+            ]
+          },
+          {
+            "path": "tests/test_search.py",
+            "batchIndex": 3,
+            "symbols": [
+              "app",
+              "seed_songs",
+              "test_search_returns_matching_songs",
+              "test_search_no_duplicates_single_tag_song",
+              "test_search_no_duplicates_multi_tag_song",
+              "test_search_no_duplicates_no_tag_song",
+              "test_search_returns_empty_for_no_match"
+            ]
+          }
+        ],
+        "models.py": [
+          {
+            "path": "routes/users.py",
+            "batchIndex": 2,
+            "symbols": [
+              "get_user",
+              "streak",
+              "notifications",
+              "read_notification"
+            ]
+          },
+          {
+            "path": "services/feed_service.py",
+            "batchIndex": 4,
+            "symbols": [
+              "get_friends_listening_now",
+              "get_activity_feed"
+            ]
+          },
+          {
+            "path": "services/notification_service.py",
+            "batchIndex": 2,
+            "symbols": [
+              "create_notification",
+              "add_to_playlist",
+              "rate_song",
+              "get_notifications",
+              "mark_as_read"
+            ]
+          },
+          {
+            "path": "services/search_service.py",
+            "batchIndex": 3,
+            "symbols": [
+              "search_songs",
+              "get_song"
+            ]
+          },
+          {
+            "path": "tests/test_search.py",
+            "batchIndex": 3,
+            "symbols": [
+              "app",
+              "seed_songs",
+              "test_search_returns_matching_songs",
+              "test_search_no_duplicates_single_tag_song",
+              "test_search_no_duplicates_multi_tag_song",
+              "test_search_no_duplicates_no_tag_song",
+              "test_search_returns_empty_for_no_match"
+            ]
+          }
+        ],
+        "services/playlist_service.py": [
+          {
+            "path": "routes/playlists.py",
+            "batchIndex": 2,
+            "symbols": [
+              "create",
+              "get_detail",
+              "get_songs",
+              "add_song"
+            ]
+          }
+        ],
+        "services/streak_service.py": [
+          {
+            "path": "routes/songs.py",
+            "batchIndex": 3,
+            "symbols": [
+              "search",
+              "get_song_detail",
+              "rate",
+              "listen"
+            ]
+          },
+          {
+            "path": "routes/users.py",
+            "batchIndex": 2,
+            "symbols": [
+              "get_user",
+              "streak",
+              "notifications",
+              "read_notification"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 2,
+      "files": [
+        {
+          "path": "routes/playlists.py",
+          "language": "python",
+          "sizeLines": 54,
+          "fileCategory": "code"
+        },
+        {
+          "path": "routes/users.py",
+          "language": "python",
+          "sizeLines": 45,
+          "fileCategory": "code"
+        },
+        {
+          "path": "services/notification_service.py",
+          "language": "python",
+          "sizeLines": 142,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "routes/playlists.py": [
+          "services/notification_service.py",
+          "services/playlist_service.py"
+        ],
+        "routes/users.py": [
+          "app.py",
+          "models.py",
+          "services/notification_service.py",
+          "services/streak_service.py"
+        ],
+        "services/notification_service.py": [
+          "app.py",
+          "models.py"
+        ]
+      },
+      "neighborMap": {
+        "routes/playlists.py": [
+          {
+            "path": "services/playlist_service.py",
+            "batchIndex": 1,
+            "symbols": [
+              "create_playlist",
+              "get_playlist_songs",
+              "get_playlist",
+              "get_user_playlists"
+            ]
+          }
+        ],
+        "routes/users.py": [
+          {
+            "path": "app.py",
+            "batchIndex": 1,
+            "symbols": [
+              "create_app"
+            ]
+          },
+          {
+            "path": "models.py",
+            "batchIndex": 1,
+            "symbols": [
+              "generate_uuid",
+              "User",
+              "Tag",
+              "Song",
+              "ListeningEvent",
+              "Rating",
+              "Playlist",
+              "Notification"
+            ]
+          },
+          {
+            "path": "services/streak_service.py",
+            "batchIndex": 1,
+            "symbols": [
+              "record_listening_event",
+              "update_listening_streak",
+              "get_streak"
+            ]
+          }
+        ],
+        "services/notification_service.py": [
+          {
+            "path": "app.py",
+            "batchIndex": 1,
+            "symbols": [
+              "create_app"
+            ]
+          },
+          {
+            "path": "models.py",
+            "batchIndex": 1,
+            "symbols": [
+              "generate_uuid",
+              "User",
+              "Tag",
+              "Song",
+              "ListeningEvent",
+              "Rating",
+              "Playlist",
+              "Notification"
+            ]
+          },
+          {
+            "path": "routes/songs.py",
+            "batchIndex": 3,
+            "symbols": [
+              "search",
+              "get_song_detail",
+              "rate",
+              "listen"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 3,
+      "files": [
+        {
+          "path": "routes/songs.py",
+          "language": "python",
+          "sizeLines": 53,
+          "fileCategory": "code"
+        },
+        {
+          "path": "services/search_service.py",
+          "language": "python",
+          "sizeLines": 53,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_search.py",
+          "language": "python",
+          "sizeLines": 119,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "routes/songs.py": [
+          "services/notification_service.py",
+          "services/search_service.py",
+          "services/streak_service.py"
+        ],
+        "services/search_service.py": [
+          "app.py",
+          "models.py"
+        ],
+        "tests/test_search.py": [
+          "app.py",
+          "models.py",
+          "services/search_service.py"
+        ]
+      },
+      "neighborMap": {
+        "routes/songs.py": [
+          {
+            "path": "services/notification_service.py",
+            "batchIndex": 2,
+            "symbols": [
+              "create_notification",
+              "add_to_playlist",
+              "rate_song",
+              "get_notifications",
+              "mark_as_read"
+            ]
+          },
+          {
+            "path": "services/streak_service.py",
+            "batchIndex": 1,
+            "symbols": [
+              "record_listening_event",
+              "update_listening_streak",
+              "get_streak"
+            ]
+          }
+        ],
+        "services/search_service.py": [
+          {
+            "path": "app.py",
+            "batchIndex": 1,
+            "symbols": [
+              "create_app"
+            ]
+          },
+          {
+            "path": "models.py",
+            "batchIndex": 1,
+            "symbols": [
+              "generate_uuid",
+              "User",
+              "Tag",
+              "Song",
+              "ListeningEvent",
+              "Rating",
+              "Playlist",
+              "Notification"
+            ]
+          }
+        ],
+        "tests/test_search.py": [
+          {
+            "path": "app.py",
+            "batchIndex": 1,
+            "symbols": [
+              "create_app"
+            ]
+          },
+          {
+            "path": "models.py",
+            "batchIndex": 1,
+            "symbols": [
+              "generate_uuid",
+              "User",
+              "Tag",
+              "Song",
+              "ListeningEvent",
+              "Rating",
+              "Playlist",
+              "Notification"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 4,
+      "files": [
+        {
+          "path": ".understand-anything/.understandignore",
+          "language": "unknown",
+          "sizeLines": 45,
+          "fileCategory": "code"
+        },
+        {
+          "path": "README.md",
+          "language": "markdown",
+          "sizeLines": 117,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "requirements.txt",
+          "language": "txt",
+          "sizeLines": 5,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "routes/__init__.py",
+          "language": "python",
+          "sizeLines": 0,
+          "fileCategory": "code"
+        },
+        {
+          "path": "routes/feed.py",
+          "language": "python",
+          "sizeLines": 24,
+          "fileCategory": "code"
+        },
+        {
+          "path": "services/__init__.py",
+          "language": "python",
+          "sizeLines": 0,
+          "fileCategory": "code"
+        },
+        {
+          "path": "services/feed_service.py",
+          "language": "python",
+          "sizeLines": 105,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/__init__.py",
+          "language": "python",
+          "sizeLines": 0,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        ".understand-anything/.understandignore": [],
+        "README.md": [],
+        "requirements.txt": [],
+        "routes/__init__.py": [],
+        "routes/feed.py": [
+          "services/feed_service.py"
+        ],
+        "services/__init__.py": [],
+        "services/feed_service.py": [
+          "app.py",
+          "models.py"
+        ],
+        "tests/__init__.py": []
+      },
+      "neighborMap": {
+        "services/feed_service.py": [
+          {
+            "path": "app.py",
+            "batchIndex": 1,
+            "symbols": [
+              "create_app"
+            ]
+          },
+          {
+            "path": "models.py",
+            "batchIndex": 1,
+            "symbols": [
+              "generate_uuid",
+              "User",
+              "Tag",
+              "Song",
+              "ListeningEvent",
+              "Rating",
+              "Playlist",
+              "Notification"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

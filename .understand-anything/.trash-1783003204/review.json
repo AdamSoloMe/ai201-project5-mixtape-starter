@@ -1,0 +1,33 @@
+{
+  "issues": [],
+  "warnings": [
+    "Node 'config:requirements.txt' has no edges (orphan)",
+    "Node 'file:routes/__init__.py' has no edges (orphan)",
+    "Node 'file:services/__init__.py' has no edges (orphan)",
+    "Node 'file:tests/__init__.py' has no edges (orphan)",
+    "Node 'config:.understand-anything/.understandignore' has no edges (orphan)"
+  ],
+  "stats": {
+    "totalNodes": 80,
+    "totalEdges": 169,
+    "totalLayers": 5,
+    "tourSteps": 12,
+    "nodeTypes": {
+      "file": 18,
+      "function": 52,
+      "class": 7,
+      "document": 1,
+      "config": 2
+    },
+    "edgeTypes": {
+      "contains": 59,
+      "exports": 40,
+      "imports": 32,
+      "calls": 30,
+      "related": 2,
+      "tested_by": 3,
+      "depends_on": 1,
+      "documents": 2
+    }
+  }
+}

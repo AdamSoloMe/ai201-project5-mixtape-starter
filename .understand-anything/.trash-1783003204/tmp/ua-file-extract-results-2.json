@@ -1,0 +1,633 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 3,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "routes/playlists.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 54,
+      "nonEmptyLines": 44,
+      "functions": [
+        {
+          "name": "create",
+          "startLine": 11,
+          "endLine": 22,
+          "params": []
+        },
+        {
+          "name": "get_detail",
+          "startLine": 26,
+          "endLine": 31,
+          "params": [
+            "playlist_id"
+          ]
+        },
+        {
+          "name": "get_songs",
+          "startLine": 35,
+          "endLine": 40,
+          "params": [
+            "playlist_id"
+          ]
+        },
+        {
+          "name": "add_song",
+          "startLine": 44,
+          "endLine": 54,
+          "params": [
+            "playlist_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "create",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "get_detail",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "get_songs",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "add_song",
+          "line": 43,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "create",
+          "callee": "request.get_json",
+          "lineNumber": 12
+        },
+        {
+          "caller": "create",
+          "callee": "data.get",
+          "lineNumber": 13
+        },
+        {
+          "caller": "create",
+          "callee": "data.get",
+          "lineNumber": 14
+        },
+        {
+          "caller": "create",
+          "callee": "data.get",
+          "lineNumber": 15
+        },
+        {
+          "caller": "create",
+          "callee": "jsonify",
+          "lineNumber": 17
+        },
+        {
+          "caller": "create",
+          "callee": "create_playlist",
+          "lineNumber": 19
+        },
+        {
+          "caller": "create",
+          "callee": "jsonify",
+          "lineNumber": 20
+        },
+        {
+          "caller": "create",
+          "callee": "playlist.to_dict",
+          "lineNumber": 20
+        },
+        {
+          "caller": "create",
+          "callee": "jsonify",
+          "lineNumber": 22
+        },
+        {
+          "caller": "create",
+          "callee": "str",
+          "lineNumber": 22
+        },
+        {
+          "caller": "get_detail",
+          "callee": "get_playlist",
+          "lineNumber": 28
+        },
+        {
+          "caller": "get_detail",
+          "callee": "jsonify",
+          "lineNumber": 29
+        },
+        {
+          "caller": "get_detail",
+          "callee": "jsonify",
+          "lineNumber": 31
+        },
+        {
+          "caller": "get_detail",
+          "callee": "str",
+          "lineNumber": 31
+        },
+        {
+          "caller": "get_songs",
+          "callee": "get_playlist_songs",
+          "lineNumber": 37
+        },
+        {
+          "caller": "get_songs",
+          "callee": "jsonify",
+          "lineNumber": 38
+        },
+        {
+          "caller": "get_songs",
+          "callee": "len",
+          "lineNumber": 38
+        },
+        {
+          "caller": "get_songs",
+          "callee": "jsonify",
+          "lineNumber": 40
+        },
+        {
+          "caller": "get_songs",
+          "callee": "str",
+          "lineNumber": 40
+        },
+        {
+          "caller": "add_song",
+          "callee": "request.get_json",
+          "lineNumber": 45
+        },
+        {
+          "caller": "add_song",
+          "callee": "data.get",
+          "lineNumber": 46
+        },
+        {
+          "caller": "add_song",
+          "callee": "data.get",
+          "lineNumber": 47
+        },
+        {
+          "caller": "add_song",
+          "callee": "jsonify",
+          "lineNumber": 49
+        },
+        {
+          "caller": "add_song",
+          "callee": "add_to_playlist",
+          "lineNumber": 51
+        },
+        {
+          "caller": "add_song",
+          "callee": "jsonify",
+          "lineNumber": 52
+        },
+        {
+          "caller": "add_song",
+          "callee": "jsonify",
+          "lineNumber": 54
+        },
+        {
+          "caller": "add_song",
+          "callee": "str",
+          "lineNumber": 54
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "routes/users.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 45,
+      "nonEmptyLines": 35,
+      "functions": [
+        {
+          "name": "get_user",
+          "startLine": 13,
+          "endLine": 17,
+          "params": [
+            "user_id"
+          ]
+        },
+        {
+          "name": "streak",
+          "startLine": 21,
+          "endLine": 26,
+          "params": [
+            "user_id"
+          ]
+        },
+        {
+          "name": "notifications",
+          "startLine": 30,
+          "endLine": 36,
+          "params": [
+            "user_id"
+          ]
+        },
+        {
+          "name": "read_notification",
+          "startLine": 40,
+          "endLine": 45,
+          "params": [
+            "notification_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_user",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "streak",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "notifications",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "read_notification",
+          "line": 39,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_user",
+          "callee": "db.session.get",
+          "lineNumber": 14
+        },
+        {
+          "caller": "get_user",
+          "callee": "jsonify",
+          "lineNumber": 16
+        },
+        {
+          "caller": "get_user",
+          "callee": "jsonify",
+          "lineNumber": 17
+        },
+        {
+          "caller": "get_user",
+          "callee": "user.to_dict",
+          "lineNumber": 17
+        },
+        {
+          "caller": "streak",
+          "callee": "get_streak",
+          "lineNumber": 23
+        },
+        {
+          "caller": "streak",
+          "callee": "jsonify",
+          "lineNumber": 24
+        },
+        {
+          "caller": "streak",
+          "callee": "jsonify",
+          "lineNumber": 26
+        },
+        {
+          "caller": "streak",
+          "callee": "str",
+          "lineNumber": 26
+        },
+        {
+          "caller": "notifications",
+          "callee": "request.args.get(\"unread_only\", \"false\").lower",
+          "lineNumber": 31
+        },
+        {
+          "caller": "notifications",
+          "callee": "request.args.get",
+          "lineNumber": 31
+        },
+        {
+          "caller": "notifications",
+          "callee": "get_notifications",
+          "lineNumber": 33
+        },
+        {
+          "caller": "notifications",
+          "callee": "jsonify",
+          "lineNumber": 34
+        },
+        {
+          "caller": "notifications",
+          "callee": "len",
+          "lineNumber": 34
+        },
+        {
+          "caller": "notifications",
+          "callee": "jsonify",
+          "lineNumber": 36
+        },
+        {
+          "caller": "notifications",
+          "callee": "str",
+          "lineNumber": 36
+        },
+        {
+          "caller": "read_notification",
+          "callee": "mark_as_read",
+          "lineNumber": 42
+        },
+        {
+          "caller": "read_notification",
+          "callee": "jsonify",
+          "lineNumber": 43
+        },
+        {
+          "caller": "read_notification",
+          "callee": "jsonify",
+          "lineNumber": 45
+        },
+        {
+          "caller": "read_notification",
+          "callee": "str",
+          "lineNumber": 45
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "services/notification_service.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 142,
+      "nonEmptyLines": 111,
+      "functions": [
+        {
+          "name": "create_notification",
+          "startLine": 13,
+          "endLine": 32,
+          "params": [
+            "user_id",
+            "notification_type",
+            "body"
+          ]
+        },
+        {
+          "name": "add_to_playlist",
+          "startLine": 35,
+          "endLine": 70,
+          "params": [
+            "playlist_id",
+            "song_id",
+            "added_by_user_id"
+          ]
+        },
+        {
+          "name": "rate_song",
+          "startLine": 73,
+          "endLine": 110,
+          "params": [
+            "user_id",
+            "song_id",
+            "score"
+          ]
+        },
+        {
+          "name": "get_notifications",
+          "startLine": 113,
+          "endLine": 128,
+          "params": [
+            "user_id",
+            "unread_only"
+          ]
+        },
+        {
+          "name": "mark_as_read",
+          "startLine": 131,
+          "endLine": 142,
+          "params": [
+            "notification_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "create_notification",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "add_to_playlist",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "rate_song",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "get_notifications",
+          "line": 113,
+          "isDefault": false
+        },
+        {
+          "name": "mark_as_read",
+          "line": 131,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "create_notification",
+          "callee": "Notification",
+          "lineNumber": 25
+        },
+        {
+          "caller": "create_notification",
+          "callee": "db.session.add",
+          "lineNumber": 30
+        },
+        {
+          "caller": "create_notification",
+          "callee": "db.session.commit",
+          "lineNumber": 31
+        },
+        {
+          "caller": "add_to_playlist",
+          "callee": "db.session.get",
+          "lineNumber": 47
+        },
+        {
+          "caller": "add_to_playlist",
+          "callee": "ValueError",
+          "lineNumber": 49
+        },
+        {
+          "caller": "add_to_playlist",
+          "callee": "db.session.get",
+          "lineNumber": 51
+        },
+        {
+          "caller": "add_to_playlist",
+          "callee": "ValueError",
+          "lineNumber": 53
+        },
+        {
+          "caller": "add_to_playlist",
+          "callee": "db.session.get",
+          "lineNumber": 55
+        },
+        {
+          "caller": "add_to_playlist",
+          "callee": "ValueError",
+          "lineNumber": 57
+        },
+        {
+          "caller": "add_to_playlist",
+          "callee": "playlist.songs.append",
+          "lineNumber": 61
+        },
+        {
+          "caller": "add_to_playlist",
+          "callee": "db.session.commit",
+          "lineNumber": 62
+        },
+        {
+          "caller": "add_to_playlist",
+          "callee": "create_notification",
+          "lineNumber": 66
+        },
+        {
+          "caller": "rate_song",
+          "callee": "ValueError",
+          "lineNumber": 86
+        },
+        {
+          "caller": "rate_song",
+          "callee": "db.session.get",
+          "lineNumber": 88
+        },
+        {
+          "caller": "rate_song",
+          "callee": "ValueError",
+          "lineNumber": 90
+        },
+        {
+          "caller": "rate_song",
+          "callee": "db.session.get",
+          "lineNumber": 92
+        },
+        {
+          "caller": "rate_song",
+          "callee": "ValueError",
+          "lineNumber": 94
+        },
+        {
+          "caller": "rate_song",
+          "callee": "db.session.query(Rating).filter_by(\n        user_id=user_id, song_id=song_id\n    ).first",
+          "lineNumber": 97
+        },
+        {
+          "caller": "rate_song",
+          "callee": "db.session.query(Rating).filter_by",
+          "lineNumber": 97
+        },
+        {
+          "caller": "rate_song",
+          "callee": "db.session.query",
+          "lineNumber": 97
+        },
+        {
+          "caller": "rate_song",
+          "callee": "Rating",
+          "lineNumber": 105
+        },
+        {
+          "caller": "rate_song",
+          "callee": "db.session.add",
+          "lineNumber": 106
+        },
+        {
+          "caller": "rate_song",
+          "callee": "db.session.commit",
+          "lineNumber": 108
+        },
+        {
+          "caller": "get_notifications",
+          "callee": "db.session.query(Notification).filter_by",
+          "lineNumber": 124
+        },
+        {
+          "caller": "get_notifications",
+          "callee": "db.session.query",
+          "lineNumber": 124
+        },
+        {
+          "caller": "get_notifications",
+          "callee": "query.filter_by",
+          "lineNumber": 126
+        },
+        {
+          "caller": "get_notifications",
+          "callee": "query.order_by(desc(Notification.created_at)).all",
+          "lineNumber": 127
+        },
+        {
+          "caller": "get_notifications",
+          "callee": "query.order_by",
+          "lineNumber": 127
+        },
+        {
+          "caller": "get_notifications",
+          "callee": "desc",
+          "lineNumber": 127
+        },
+        {
+          "caller": "get_notifications",
+          "callee": "n.to_dict",
+          "lineNumber": 128
+        },
+        {
+          "caller": "mark_as_read",
+          "callee": "db.session.get",
+          "lineNumber": 138
+        },
+        {
+          "caller": "mark_as_read",
+          "callee": "ValueError",
+          "lineNumber": 140
+        },
+        {
+          "caller": "mark_as_read",
+          "callee": "db.session.commit",
+          "lineNumber": 142
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    }
+  ]
+}

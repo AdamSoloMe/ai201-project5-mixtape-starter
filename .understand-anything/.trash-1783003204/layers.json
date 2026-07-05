@@ -1,0 +1,58 @@
+[
+  {
+    "id": "layer:api",
+    "name": "API Layer",
+    "description": "Flask blueprints exposing HTTP routes for playlists, users, songs, and the friends activity feed, translating requests into service calls.",
+    "nodeIds": [
+      "file:routes/playlists.py",
+      "file:routes/users.py",
+      "file:routes/songs.py",
+      "file:routes/__init__.py",
+      "file:routes/feed.py"
+    ]
+  },
+  {
+    "id": "layer:service",
+    "name": "Service Layer",
+    "description": "Business logic modules for playlists, listening streaks, notifications, song search, and the activity feed that sit between the routes and the ORM models.",
+    "nodeIds": [
+      "file:services/playlist_service.py",
+      "file:services/streak_service.py",
+      "file:services/notification_service.py",
+      "file:services/search_service.py",
+      "file:services/__init__.py",
+      "file:services/feed_service.py"
+    ]
+  },
+  {
+    "id": "layer:app-core",
+    "name": "App Core & Data Model",
+    "description": "The Flask application factory, SQLAlchemy ORM models, and the seed script that every service and test depends on for database access.",
+    "nodeIds": [
+      "file:app.py",
+      "file:models.py",
+      "file:seed_data.py"
+    ]
+  },
+  {
+    "id": "layer:test",
+    "name": "Test Layer",
+    "description": "Pytest suites covering the playlist, streak, and search services against the app and models.",
+    "nodeIds": [
+      "file:tests/test_playlists.py",
+      "file:tests/test_streaks.py",
+      "file:tests/test_search.py",
+      "file:tests/__init__.py"
+    ]
+  },
+  {
+    "id": "layer:project-meta",
+    "name": "Project Meta",
+    "description": "Project-level documentation and configuration, including the bug-hunt README, Python dependency manifest, and the codebase-analysis tool's ignore rules.",
+    "nodeIds": [
+      "document:README.md",
+      "config:requirements.txt",
+      "config:.understand-anything/.understandignore"
+    ]
+  }
+]

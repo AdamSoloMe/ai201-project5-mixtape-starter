@@ -1,0 +1,13 @@
+{
+  "projectRoot": "/Users/adam_solomon_home/Downloads/ai201-project5-mixtape-starter",
+  "batchFiles": [
+    {"path": "routes/songs.py", "language": "python", "sizeLines": 53, "fileCategory": "code"},
+    {"path": "services/search_service.py", "language": "python", "sizeLines": 53, "fileCategory": "code"},
+    {"path": "tests/test_search.py", "language": "python", "sizeLines": 119, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "routes/songs.py": ["services/notification_service.py", "services/search_service.py", "services/streak_service.py"],
+    "services/search_service.py": ["app.py", "models.py"],
+    "tests/test_search.py": ["app.py", "models.py", "services/search_service.py"]
+  }
+}

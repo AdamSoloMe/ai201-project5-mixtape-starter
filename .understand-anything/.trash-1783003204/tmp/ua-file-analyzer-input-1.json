@@ -1,0 +1,21 @@
+{
+  "projectRoot": "/Users/adam_solomon_home/Downloads/ai201-project5-mixtape-starter",
+  "batchFiles": [
+    {"path": "app.py", "language": "python", "sizeLines": 48, "fileCategory": "code"},
+    {"path": "models.py", "language": "python", "sizeLines": 177, "fileCategory": "code"},
+    {"path": "seed_data.py", "language": "python", "sizeLines": 187, "fileCategory": "code"},
+    {"path": "services/playlist_service.py", "language": "python", "sizeLines": 96, "fileCategory": "code"},
+    {"path": "services/streak_service.py", "language": "python", "sizeLines": 94, "fileCategory": "code"},
+    {"path": "tests/test_playlists.py", "language": "python", "sizeLines": 86, "fileCategory": "code"},
+    {"path": "tests/test_streaks.py", "language": "python", "sizeLines": 96, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "app.py": [],
+    "models.py": ["app.py"],
+    "seed_data.py": ["app.py", "models.py"],
+    "services/playlist_service.py": ["app.py", "models.py"],
+    "services/streak_service.py": ["app.py", "models.py"],
+    "tests/test_playlists.py": ["app.py", "models.py", "services/playlist_service.py"],
+    "tests/test_streaks.py": ["app.py", "models.py", "services/streak_service.py"]
+  }
+}

@@ -1,0 +1,409 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 8,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 117,
+      "nonEmptyLines": 81,
+      "sections": [
+        {
+          "heading": "Mixtape",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "App Structure",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Setup",
+          "level": 2,
+          "line": 39
+        },
+        {
+          "heading": "The Five Open Issues",
+          "level": 2,
+          "line": 84
+        },
+        {
+          "heading": "How to Read the Code",
+          "level": 2,
+          "line": 98
+        },
+        {
+          "heading": "Submission",
+          "level": 2,
+          "line": 109
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "requirements.txt",
+      "language": "txt",
+      "fileCategory": "docs",
+      "totalLines": 5,
+      "nonEmptyLines": 5,
+      "metrics": {}
+    },
+    {
+      "path": "routes/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "routes/feed.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 24,
+      "nonEmptyLines": 18,
+      "functions": [
+        {
+          "name": "listening_now",
+          "startLine": 10,
+          "endLine": 15,
+          "params": [
+            "user_id"
+          ]
+        },
+        {
+          "name": "activity",
+          "startLine": 19,
+          "endLine": 24,
+          "params": [
+            "user_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "listening_now",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "activity",
+          "line": 18,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "listening_now",
+          "callee": "get_friends_listening_now",
+          "lineNumber": 12
+        },
+        {
+          "caller": "listening_now",
+          "callee": "jsonify",
+          "lineNumber": 13
+        },
+        {
+          "caller": "listening_now",
+          "callee": "len",
+          "lineNumber": 13
+        },
+        {
+          "caller": "listening_now",
+          "callee": "jsonify",
+          "lineNumber": 15
+        },
+        {
+          "caller": "listening_now",
+          "callee": "str",
+          "lineNumber": 15
+        },
+        {
+          "caller": "activity",
+          "callee": "get_activity_feed",
+          "lineNumber": 21
+        },
+        {
+          "caller": "activity",
+          "callee": "jsonify",
+          "lineNumber": 22
+        },
+        {
+          "caller": "activity",
+          "callee": "len",
+          "lineNumber": 22
+        },
+        {
+          "caller": "activity",
+          "callee": "jsonify",
+          "lineNumber": 24
+        },
+        {
+          "caller": "activity",
+          "callee": "str",
+          "lineNumber": 24
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "services/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "services/feed_service.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 105,
+      "nonEmptyLines": 83,
+      "functions": [
+        {
+          "name": "get_friends_listening_now",
+          "startLine": 16,
+          "endLine": 62,
+          "params": [
+            "user_id"
+          ]
+        },
+        {
+          "name": "get_activity_feed",
+          "startLine": 65,
+          "endLine": 105,
+          "params": [
+            "user_id",
+            "limit"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_friends_listening_now",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "get_activity_feed",
+          "line": 65,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "db.session.get",
+          "lineNumber": 28
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "ValueError",
+          "lineNumber": 30
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "datetime.now",
+          "lineNumber": 32
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "db.session.query(ListeningEvent)\n        .filter(\n            ListeningEvent.user_id.in_(friend_ids),\n            ListeningEvent.listened_at >= cutoff,\n        )\n        .order_by(desc(ListeningEvent.listened_at))\n        .all",
+          "lineNumber": 39
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "db.session.query(ListeningEvent)\n        .filter(\n            ListeningEvent.user_id.in_(friend_ids),\n            ListeningEvent.listened_at >= cutoff,\n        )\n        .order_by",
+          "lineNumber": 39
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "db.session.query(ListeningEvent)\n        .filter",
+          "lineNumber": 39
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "db.session.query",
+          "lineNumber": 39
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "ListeningEvent.user_id.in_",
+          "lineNumber": 41
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "desc",
+          "lineNumber": 44
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "set",
+          "lineNumber": 49
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "seen_friends.add",
+          "lineNumber": 53
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "db.session.get",
+          "lineNumber": 54
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "db.session.get",
+          "lineNumber": 55
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "result.append",
+          "lineNumber": 56
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "friend.to_dict",
+          "lineNumber": 57
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "song.to_dict",
+          "lineNumber": 58
+        },
+        {
+          "caller": "get_friends_listening_now",
+          "callee": "event.listened_at.isoformat",
+          "lineNumber": 59
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "db.session.get",
+          "lineNumber": 79
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "ValueError",
+          "lineNumber": 81
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "db.session.query(ListeningEvent)\n        .filter(ListeningEvent.user_id.in_(friend_ids))\n        .order_by(desc(ListeningEvent.listened_at))\n        .limit(limit)\n        .all",
+          "lineNumber": 88
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "db.session.query(ListeningEvent)\n        .filter(ListeningEvent.user_id.in_(friend_ids))\n        .order_by(desc(ListeningEvent.listened_at))\n        .limit",
+          "lineNumber": 88
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "db.session.query(ListeningEvent)\n        .filter(ListeningEvent.user_id.in_(friend_ids))\n        .order_by",
+          "lineNumber": 88
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "db.session.query(ListeningEvent)\n        .filter",
+          "lineNumber": 88
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "db.session.query",
+          "lineNumber": 88
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "ListeningEvent.user_id.in_",
+          "lineNumber": 89
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "desc",
+          "lineNumber": 90
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "db.session.get",
+          "lineNumber": 97
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "db.session.get",
+          "lineNumber": 98
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "result.append",
+          "lineNumber": 99
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "friend.to_dict",
+          "lineNumber": 100
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "song.to_dict",
+          "lineNumber": 101
+        },
+        {
+          "caller": "get_activity_feed",
+          "callee": "event.listened_at.isoformat",
+          "lineNumber": 102
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 45,
+      "nonEmptyLines": 39,
+      "metrics": {}
+    }
+  ]
+}

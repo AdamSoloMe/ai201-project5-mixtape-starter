@@ -1,0 +1,649 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 3,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "routes/songs.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 53,
+      "nonEmptyLines": 43,
+      "functions": [
+        {
+          "name": "search",
+          "startLine": 12,
+          "endLine": 17,
+          "params": []
+        },
+        {
+          "name": "get_song_detail",
+          "startLine": 21,
+          "endLine": 26,
+          "params": [
+            "song_id"
+          ]
+        },
+        {
+          "name": "rate",
+          "startLine": 30,
+          "endLine": 40,
+          "params": [
+            "song_id"
+          ]
+        },
+        {
+          "name": "listen",
+          "startLine": 44,
+          "endLine": 53,
+          "params": [
+            "song_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "search",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "get_song_detail",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "rate",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "listen",
+          "line": 43,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "search",
+          "callee": "request.args.get",
+          "lineNumber": 13
+        },
+        {
+          "caller": "search",
+          "callee": "jsonify",
+          "lineNumber": 15
+        },
+        {
+          "caller": "search",
+          "callee": "search_songs",
+          "lineNumber": 16
+        },
+        {
+          "caller": "search",
+          "callee": "jsonify",
+          "lineNumber": 17
+        },
+        {
+          "caller": "search",
+          "callee": "len",
+          "lineNumber": 17
+        },
+        {
+          "caller": "get_song_detail",
+          "callee": "get_song",
+          "lineNumber": 23
+        },
+        {
+          "caller": "get_song_detail",
+          "callee": "jsonify",
+          "lineNumber": 24
+        },
+        {
+          "caller": "get_song_detail",
+          "callee": "jsonify",
+          "lineNumber": 26
+        },
+        {
+          "caller": "get_song_detail",
+          "callee": "str",
+          "lineNumber": 26
+        },
+        {
+          "caller": "rate",
+          "callee": "request.get_json",
+          "lineNumber": 31
+        },
+        {
+          "caller": "rate",
+          "callee": "data.get",
+          "lineNumber": 32
+        },
+        {
+          "caller": "rate",
+          "callee": "data.get",
+          "lineNumber": 33
+        },
+        {
+          "caller": "rate",
+          "callee": "jsonify",
+          "lineNumber": 35
+        },
+        {
+          "caller": "rate",
+          "callee": "rate_song",
+          "lineNumber": 37
+        },
+        {
+          "caller": "rate",
+          "callee": "int",
+          "lineNumber": 37
+        },
+        {
+          "caller": "rate",
+          "callee": "jsonify",
+          "lineNumber": 38
+        },
+        {
+          "caller": "rate",
+          "callee": "rating.to_dict",
+          "lineNumber": 38
+        },
+        {
+          "caller": "rate",
+          "callee": "jsonify",
+          "lineNumber": 40
+        },
+        {
+          "caller": "rate",
+          "callee": "str",
+          "lineNumber": 40
+        },
+        {
+          "caller": "listen",
+          "callee": "request.get_json",
+          "lineNumber": 45
+        },
+        {
+          "caller": "listen",
+          "callee": "data.get",
+          "lineNumber": 46
+        },
+        {
+          "caller": "listen",
+          "callee": "jsonify",
+          "lineNumber": 48
+        },
+        {
+          "caller": "listen",
+          "callee": "record_listening_event",
+          "lineNumber": 50
+        },
+        {
+          "caller": "listen",
+          "callee": "jsonify",
+          "lineNumber": 51
+        },
+        {
+          "caller": "listen",
+          "callee": "event.to_dict",
+          "lineNumber": 51
+        },
+        {
+          "caller": "listen",
+          "callee": "jsonify",
+          "lineNumber": 53
+        },
+        {
+          "caller": "listen",
+          "callee": "str",
+          "lineNumber": 53
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "services/search_service.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 53,
+      "nonEmptyLines": 41,
+      "functions": [
+        {
+          "name": "search_songs",
+          "startLine": 11,
+          "endLine": 37,
+          "params": [
+            "query"
+          ]
+        },
+        {
+          "name": "get_song",
+          "startLine": 40,
+          "endLine": 53,
+          "params": [
+            "song_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "search_songs",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "get_song",
+          "line": 40,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "search_songs",
+          "callee": "db.session.query(Song)\n        .outerjoin(song_tags, Song.id == song_tags.c.song_id)\n        .filter(\n            db.or_(\n                Song.title.ilike(f\"%{query}%\"),\n                Song.artist.ilike(f\"%{query}%\"),\n            )\n        )\n        .all",
+          "lineNumber": 26
+        },
+        {
+          "caller": "search_songs",
+          "callee": "db.session.query(Song)\n        .outerjoin(song_tags, Song.id == song_tags.c.song_id)\n        .filter",
+          "lineNumber": 26
+        },
+        {
+          "caller": "search_songs",
+          "callee": "db.session.query(Song)\n        .outerjoin",
+          "lineNumber": 26
+        },
+        {
+          "caller": "search_songs",
+          "callee": "db.session.query",
+          "lineNumber": 26
+        },
+        {
+          "caller": "search_songs",
+          "callee": "db.or_",
+          "lineNumber": 29
+        },
+        {
+          "caller": "search_songs",
+          "callee": "Song.title.ilike",
+          "lineNumber": 30
+        },
+        {
+          "caller": "search_songs",
+          "callee": "Song.artist.ilike",
+          "lineNumber": 31
+        },
+        {
+          "caller": "search_songs",
+          "callee": "song.to_dict",
+          "lineNumber": 37
+        },
+        {
+          "caller": "get_song",
+          "callee": "db.session.get",
+          "lineNumber": 50
+        },
+        {
+          "caller": "get_song",
+          "callee": "ValueError",
+          "lineNumber": 52
+        },
+        {
+          "caller": "get_song",
+          "callee": "song.to_dict",
+          "lineNumber": 53
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/test_search.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 119,
+      "nonEmptyLines": 96,
+      "functions": [
+        {
+          "name": "app",
+          "startLine": 14,
+          "endLine": 19,
+          "params": []
+        },
+        {
+          "name": "seed_songs",
+          "startLine": 23,
+          "endLine": 78,
+          "params": [
+            "app"
+          ]
+        },
+        {
+          "name": "test_search_returns_matching_songs",
+          "startLine": 81,
+          "endLine": 86,
+          "params": [
+            "app",
+            "seed_songs"
+          ]
+        },
+        {
+          "name": "test_search_no_duplicates_single_tag_song",
+          "startLine": 89,
+          "endLine": 94,
+          "params": [
+            "app",
+            "seed_songs"
+          ]
+        },
+        {
+          "name": "test_search_no_duplicates_multi_tag_song",
+          "startLine": 97,
+          "endLine": 104,
+          "params": [
+            "app",
+            "seed_songs"
+          ]
+        },
+        {
+          "name": "test_search_no_duplicates_no_tag_song",
+          "startLine": 107,
+          "endLine": 112,
+          "params": [
+            "app",
+            "seed_songs"
+          ]
+        },
+        {
+          "name": "test_search_returns_empty_for_no_match",
+          "startLine": 115,
+          "endLine": 119,
+          "params": [
+            "app",
+            "seed_songs"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "app",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "seed_songs",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "test_search_returns_matching_songs",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "test_search_no_duplicates_single_tag_song",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "test_search_no_duplicates_multi_tag_song",
+          "line": 97,
+          "isDefault": false
+        },
+        {
+          "name": "test_search_no_duplicates_no_tag_song",
+          "line": 107,
+          "isDefault": false
+        },
+        {
+          "name": "test_search_returns_empty_for_no_match",
+          "line": 115,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "app",
+          "callee": "create_app",
+          "lineNumber": 15
+        },
+        {
+          "caller": "app",
+          "callee": "app.app_context",
+          "lineNumber": 16
+        },
+        {
+          "caller": "app",
+          "callee": "db.create_all",
+          "lineNumber": 17
+        },
+        {
+          "caller": "app",
+          "callee": "db.drop_all",
+          "lineNumber": 19
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "app.app_context",
+          "lineNumber": 25
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "User",
+          "lineNumber": 26
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "db.session.add",
+          "lineNumber": 27
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "db.session.flush",
+          "lineNumber": 28
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "Tag",
+          "lineNumber": 30
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "Tag",
+          "lineNumber": 31
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "Tag",
+          "lineNumber": 32
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "Tag",
+          "lineNumber": 33
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "db.session.add_all",
+          "lineNumber": 34
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "db.session.flush",
+          "lineNumber": 35
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "Song",
+          "lineNumber": 38
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "Song",
+          "lineNumber": 44
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "Song",
+          "lineNumber": 50
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "db.session.add_all",
+          "lineNumber": 55
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "db.session.flush",
+          "lineNumber": 56
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "db.session.execute",
+          "lineNumber": 59
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "song_tags.insert().values",
+          "lineNumber": 60
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "song_tags.insert",
+          "lineNumber": 60
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "db.session.execute",
+          "lineNumber": 62
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "song_tags.insert().values",
+          "lineNumber": 63
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "song_tags.insert",
+          "lineNumber": 63
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "db.session.execute",
+          "lineNumber": 65
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "song_tags.insert().values",
+          "lineNumber": 66
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "song_tags.insert",
+          "lineNumber": 66
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "db.session.execute",
+          "lineNumber": 68
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "song_tags.insert().values",
+          "lineNumber": 69
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "song_tags.insert",
+          "lineNumber": 69
+        },
+        {
+          "caller": "seed_songs",
+          "callee": "db.session.commit",
+          "lineNumber": 72
+        },
+        {
+          "caller": "test_search_returns_matching_songs",
+          "callee": "app.app_context",
+          "lineNumber": 83
+        },
+        {
+          "caller": "test_search_returns_matching_songs",
+          "callee": "search_songs",
+          "lineNumber": 84
+        },
+        {
+          "caller": "test_search_no_duplicates_single_tag_song",
+          "callee": "app.app_context",
+          "lineNumber": 91
+        },
+        {
+          "caller": "test_search_no_duplicates_single_tag_song",
+          "callee": "search_songs",
+          "lineNumber": 92
+        },
+        {
+          "caller": "test_search_no_duplicates_single_tag_song",
+          "callee": "len",
+          "lineNumber": 94
+        },
+        {
+          "caller": "test_search_no_duplicates_multi_tag_song",
+          "callee": "app.app_context",
+          "lineNumber": 101
+        },
+        {
+          "caller": "test_search_no_duplicates_multi_tag_song",
+          "callee": "search_songs",
+          "lineNumber": 102
+        },
+        {
+          "caller": "test_search_no_duplicates_multi_tag_song",
+          "callee": "len",
+          "lineNumber": 104
+        },
+        {
+          "caller": "test_search_no_duplicates_no_tag_song",
+          "callee": "app.app_context",
+          "lineNumber": 109
+        },
+        {
+          "caller": "test_search_no_duplicates_no_tag_song",
+          "callee": "search_songs",
+          "lineNumber": 110
+        },
+        {
+          "caller": "test_search_no_duplicates_no_tag_song",
+          "callee": "len",
+          "lineNumber": 112
+        },
+        {
+          "caller": "test_search_returns_empty_for_no_match",
+          "callee": "app.app_context",
+          "lineNumber": 117
+        },
+        {
+          "caller": "test_search_returns_empty_for_no_match",
+          "callee": "search_songs",
+          "lineNumber": 118
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 7,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    }
+  ]
+}

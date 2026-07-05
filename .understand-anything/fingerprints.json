@@ -1,0 +1,1184 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "2dfdeaa962d3a715cd7194b2eb7a84ade9f598b5",
+  "generatedAt": "2026-07-02T14:39:54.885Z",
+  "files": {
+    "app.py": {
+      "filePath": "app.py",
+      "contentHash": "1e6fd9a5ec13866b3a1eb266e725365e43e51f4710b39e3031453bd529e49653",
+      "functions": [
+        {
+          "name": "create_app",
+          "params": [
+            "config"
+          ],
+          "exported": true,
+          "lineCount": 30
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "flask",
+          "specifiers": [
+            "Flask"
+          ]
+        },
+        {
+          "source": "flask_sqlalchemy",
+          "specifiers": [
+            "SQLAlchemy"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        }
+      ],
+      "exports": [
+        "create_app"
+      ],
+      "totalLines": 49,
+      "hasStructuralAnalysis": true
+    },
+    "models.py": {
+      "filePath": "models.py",
+      "contentHash": "c3dd570f9fcb61165da7682a9aff98e6d6b8aceee7758f05c424c8a50fe4cedc",
+      "functions": [
+        {
+          "name": "generate_uuid",
+          "params": [],
+          "exported": true,
+          "lineCount": 2
+        }
+      ],
+      "classes": [
+        {
+          "name": "User",
+          "methods": [
+            "to_dict"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "Tag",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Song",
+          "methods": [
+            "to_dict"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "ListeningEvent",
+          "methods": [
+            "to_dict"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "Rating",
+          "methods": [
+            "to_dict"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "Playlist",
+          "methods": [
+            "to_dict"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "Notification",
+          "methods": [
+            "to_dict"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 17
+        }
+      ],
+      "imports": [
+        {
+          "source": "uuid",
+          "specifiers": [
+            "uuid"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timezone"
+          ]
+        },
+        {
+          "source": "app",
+          "specifiers": [
+            "db"
+          ]
+        }
+      ],
+      "exports": [
+        "generate_uuid",
+        "User",
+        "Tag",
+        "Song",
+        "ListeningEvent",
+        "Rating",
+        "Playlist",
+        "Notification"
+      ],
+      "totalLines": 178,
+      "hasStructuralAnalysis": true
+    },
+    "seed_data.py": {
+      "filePath": "seed_data.py",
+      "contentHash": "ba19a6ae3b16b2b86b43862aa30cd91a73d29f3551afebf2615ad6635eef0d4b",
+      "functions": [
+        {
+          "name": "seed",
+          "params": [],
+          "exported": true,
+          "lineCount": 163
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timedelta",
+            "timezone"
+          ]
+        },
+        {
+          "source": "app",
+          "specifiers": [
+            "create_app",
+            "db"
+          ]
+        },
+        {
+          "source": "models",
+          "specifiers": [
+            "User",
+            "Song",
+            "Tag",
+            "Playlist",
+            "ListeningEvent",
+            "Rating",
+            "Notification",
+            "song_tags",
+            "playlist_entries",
+            "friendships"
+          ]
+        }
+      ],
+      "exports": [
+        "seed"
+      ],
+      "totalLines": 188,
+      "hasStructuralAnalysis": true
+    },
+    "routes/__init__.py": {
+      "filePath": "routes/__init__.py",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "routes/feed.py": {
+      "filePath": "routes/feed.py",
+      "contentHash": "508e7b8470c11aeb2942d38bec06cf5d8625e369316e39ec123167b9aa9e91ca",
+      "functions": [
+        {
+          "name": "listening_now",
+          "params": [
+            "user_id"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "activity",
+          "params": [
+            "user_id"
+          ],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "flask",
+          "specifiers": [
+            "Blueprint",
+            "jsonify"
+          ]
+        },
+        {
+          "source": "services.feed_service",
+          "specifiers": [
+            "get_friends_listening_now",
+            "get_activity_feed"
+          ]
+        }
+      ],
+      "exports": [
+        "listening_now",
+        "activity"
+      ],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "routes/playlists.py": {
+      "filePath": "routes/playlists.py",
+      "contentHash": "15d9411761136bff0ef18b2189c48132564fb0684c58cb46a3612562205e4ff7",
+      "functions": [
+        {
+          "name": "create",
+          "params": [],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "get_detail",
+          "params": [
+            "playlist_id"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "get_songs",
+          "params": [
+            "playlist_id"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "add_song",
+          "params": [
+            "playlist_id"
+          ],
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "flask",
+          "specifiers": [
+            "Blueprint",
+            "request",
+            "jsonify"
+          ]
+        },
+        {
+          "source": "services.playlist_service",
+          "specifiers": [
+            "create_playlist",
+            "get_playlist_songs",
+            "get_playlist",
+            "get_user_playlists"
+          ]
+        },
+        {
+          "source": "services.notification_service",
+          "specifiers": [
+            "add_to_playlist"
+          ]
+        }
+      ],
+      "exports": [
+        "create",
+        "get_detail",
+        "get_songs",
+        "add_song"
+      ],
+      "totalLines": 55,
+      "hasStructuralAnalysis": true
+    },
+    "routes/songs.py": {
+      "filePath": "routes/songs.py",
+      "contentHash": "b1c9d4b478754349af64736d7f4e2343ca97929113061b4f9abee7cf737b2b1c",
+      "functions": [
+        {
+          "name": "search",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "get_song_detail",
+          "params": [
+            "song_id"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "rate",
+          "params": [
+            "song_id"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "listen",
+          "params": [
+            "song_id"
+          ],
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "flask",
+          "specifiers": [
+            "Blueprint",
+            "request",
+            "jsonify"
+          ]
+        },
+        {
+          "source": "services.search_service",
+          "specifiers": [
+            "search_songs",
+            "get_song"
+          ]
+        },
+        {
+          "source": "services.notification_service",
+          "specifiers": [
+            "rate_song"
+          ]
+        },
+        {
+          "source": "services.streak_service",
+          "specifiers": [
+            "record_listening_event"
+          ]
+        }
+      ],
+      "exports": [
+        "search",
+        "get_song_detail",
+        "rate",
+        "listen"
+      ],
+      "totalLines": 54,
+      "hasStructuralAnalysis": true
+    },
+    "routes/users.py": {
+      "filePath": "routes/users.py",
+      "contentHash": "ccbb4fea405ea145ef39881578adc2301d604a36ae424c17c48d4b6b1b278adc",
+      "functions": [
+        {
+          "name": "get_user",
+          "params": [
+            "user_id"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "streak",
+          "params": [
+            "user_id"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "notifications",
+          "params": [
+            "user_id"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "read_notification",
+          "params": [
+            "notification_id"
+          ],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "flask",
+          "specifiers": [
+            "Blueprint",
+            "request",
+            "jsonify"
+          ]
+        },
+        {
+          "source": "app",
+          "specifiers": [
+            "db"
+          ]
+        },
+        {
+          "source": "models",
+          "specifiers": [
+            "User"
+          ]
+        },
+        {
+          "source": "services.streak_service",
+          "specifiers": [
+            "get_streak"
+          ]
+        },
+        {
+          "source": "services.notification_service",
+          "specifiers": [
+            "get_notifications",
+            "mark_as_read"
+          ]
+        }
+      ],
+      "exports": [
+        "get_user",
+        "streak",
+        "notifications",
+        "read_notification"
+      ],
+      "totalLines": 46,
+      "hasStructuralAnalysis": true
+    },
+    "services/__init__.py": {
+      "filePath": "services/__init__.py",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "services/feed_service.py": {
+      "filePath": "services/feed_service.py",
+      "contentHash": "5b16d3c05c4b42787cb1d1587e1bcfbc99fce4aebb216df9d6aa710ec3a8d229",
+      "functions": [
+        {
+          "name": "get_friends_listening_now",
+          "params": [
+            "user_id"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 47
+        },
+        {
+          "name": "get_activity_feed",
+          "params": [
+            "user_id",
+            "limit"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 41
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timedelta",
+            "timezone"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "desc"
+          ]
+        },
+        {
+          "source": "app",
+          "specifiers": [
+            "db"
+          ]
+        },
+        {
+          "source": "models",
+          "specifiers": [
+            "User",
+            "Song",
+            "ListeningEvent"
+          ]
+        }
+      ],
+      "exports": [
+        "get_friends_listening_now",
+        "get_activity_feed"
+      ],
+      "totalLines": 106,
+      "hasStructuralAnalysis": true
+    },
+    "services/notification_service.py": {
+      "filePath": "services/notification_service.py",
+      "contentHash": "d87c5702a4914dc219e16ebd10d75f06fe44e925809824941df862beb82c5c01",
+      "functions": [
+        {
+          "name": "create_notification",
+          "params": [
+            "user_id",
+            "notification_type",
+            "body"
+          ],
+          "returnType": "Notification",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "add_to_playlist",
+          "params": [
+            "playlist_id",
+            "song_id",
+            "added_by_user_id"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 36
+        },
+        {
+          "name": "rate_song",
+          "params": [
+            "user_id",
+            "song_id",
+            "score"
+          ],
+          "returnType": "Rating",
+          "exported": true,
+          "lineCount": 38
+        },
+        {
+          "name": "get_notifications",
+          "params": [
+            "user_id",
+            "unread_only"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "mark_as_read",
+          "params": [
+            "notification_id"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "app",
+          "specifiers": [
+            "db"
+          ]
+        },
+        {
+          "source": "models",
+          "specifiers": [
+            "Notification",
+            "Song",
+            "User",
+            "Rating"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "desc"
+          ]
+        }
+      ],
+      "exports": [
+        "create_notification",
+        "add_to_playlist",
+        "rate_song",
+        "get_notifications",
+        "mark_as_read"
+      ],
+      "totalLines": 143,
+      "hasStructuralAnalysis": true
+    },
+    "services/playlist_service.py": {
+      "filePath": "services/playlist_service.py",
+      "contentHash": "de7f089e67cdb196026d4b5e4259cbc7419d2eec5dbbdfa2fbc57f40a816ab9b",
+      "functions": [
+        {
+          "name": "create_playlist",
+          "params": [
+            "name",
+            "created_by_user_id",
+            "is_collaborative"
+          ],
+          "returnType": "Playlist",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "get_playlist_songs",
+          "params": [
+            "playlist_id"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "get_playlist",
+          "params": [
+            "playlist_id"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "get_user_playlists",
+          "params": [
+            "user_id"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "app",
+          "specifiers": [
+            "db"
+          ]
+        },
+        {
+          "source": "models",
+          "specifiers": [
+            "Playlist",
+            "Song",
+            "User",
+            "playlist_entries"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "asc"
+          ]
+        }
+      ],
+      "exports": [
+        "create_playlist",
+        "get_playlist_songs",
+        "get_playlist",
+        "get_user_playlists"
+      ],
+      "totalLines": 97,
+      "hasStructuralAnalysis": true
+    },
+    "services/search_service.py": {
+      "filePath": "services/search_service.py",
+      "contentHash": "8b4bceca81dbcfa91a0605c9609d7bdf8f49a2620a40f9afe05c466ef52cd4aa",
+      "functions": [
+        {
+          "name": "search_songs",
+          "params": [
+            "query"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "get_song",
+          "params": [
+            "song_id"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "app",
+          "specifiers": [
+            "db"
+          ]
+        },
+        {
+          "source": "models",
+          "specifiers": [
+            "Song",
+            "Tag",
+            "song_tags"
+          ]
+        }
+      ],
+      "exports": [
+        "search_songs",
+        "get_song"
+      ],
+      "totalLines": 54,
+      "hasStructuralAnalysis": true
+    },
+    "services/streak_service.py": {
+      "filePath": "services/streak_service.py",
+      "contentHash": "244741e2c8bd2ea22f96720fc9abde20255ae00f7ced489bbccd80a90991257f",
+      "functions": [
+        {
+          "name": "record_listening_event",
+          "params": [
+            "user_id",
+            "song_id"
+          ],
+          "returnType": "ListeningEvent",
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "update_listening_streak",
+          "params": [
+            "user",
+            "now"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 37
+        },
+        {
+          "name": "get_streak",
+          "params": [
+            "user_id"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timezone"
+          ]
+        },
+        {
+          "source": "app",
+          "specifiers": [
+            "db"
+          ]
+        },
+        {
+          "source": "models",
+          "specifiers": [
+            "User",
+            "ListeningEvent"
+          ]
+        }
+      ],
+      "exports": [
+        "record_listening_event",
+        "update_listening_streak",
+        "get_streak"
+      ],
+      "totalLines": 95,
+      "hasStructuralAnalysis": true
+    },
+    "tests/__init__.py": {
+      "filePath": "tests/__init__.py",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "tests/test_playlists.py": {
+      "filePath": "tests/test_playlists.py",
+      "contentHash": "afa7d63fd46d9ec6acdb8027c72360eb4c80bb55b718e62fd9d8a3cce2d0005e",
+      "functions": [
+        {
+          "name": "app",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "seed_playlist",
+          "params": [
+            "app"
+          ],
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "test_playlist_returns_all_songs",
+          "params": [
+            "app",
+            "seed_playlist"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "test_playlist_returns_songs_in_order",
+          "params": [
+            "app",
+            "seed_playlist"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "test_empty_playlist_returns_empty_list",
+          "params": [
+            "app"
+          ],
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
+          ]
+        },
+        {
+          "source": "app",
+          "specifiers": [
+            "create_app",
+            "db"
+          ]
+        },
+        {
+          "source": "models",
+          "specifiers": [
+            "User",
+            "Song",
+            "Playlist",
+            "playlist_entries"
+          ]
+        },
+        {
+          "source": "services.playlist_service",
+          "specifiers": [
+            "create_playlist",
+            "get_playlist_songs"
+          ]
+        }
+      ],
+      "exports": [
+        "app",
+        "seed_playlist",
+        "test_playlist_returns_all_songs",
+        "test_playlist_returns_songs_in_order",
+        "test_empty_playlist_returns_empty_list"
+      ],
+      "totalLines": 87,
+      "hasStructuralAnalysis": true
+    },
+    "tests/test_search.py": {
+      "filePath": "tests/test_search.py",
+      "contentHash": "e6b573caccfc22d6e8229cfcd2e939e374b78e25c270b3dacc68b9c48655007d",
+      "functions": [
+        {
+          "name": "app",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "seed_songs",
+          "params": [
+            "app"
+          ],
+          "exported": true,
+          "lineCount": 56
+        },
+        {
+          "name": "test_search_returns_matching_songs",
+          "params": [
+            "app",
+            "seed_songs"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "test_search_no_duplicates_single_tag_song",
+          "params": [
+            "app",
+            "seed_songs"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "test_search_no_duplicates_multi_tag_song",
+          "params": [
+            "app",
+            "seed_songs"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "test_search_no_duplicates_no_tag_song",
+          "params": [
+            "app",
+            "seed_songs"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "test_search_returns_empty_for_no_match",
+          "params": [
+            "app",
+            "seed_songs"
+          ],
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
+          ]
+        },
+        {
+          "source": "app",
+          "specifiers": [
+            "create_app",
+            "db"
+          ]
+        },
+        {
+          "source": "models",
+          "specifiers": [
+            "User",
+            "Song",
+            "Tag",
+            "song_tags"
+          ]
+        },
+        {
+          "source": "services.search_service",
+          "specifiers": [
+            "search_songs"
+          ]
+        }
+      ],
+      "exports": [
+        "app",
+        "seed_songs",
+        "test_search_returns_matching_songs",
+        "test_search_no_duplicates_single_tag_song",
+        "test_search_no_duplicates_multi_tag_song",
+        "test_search_no_duplicates_no_tag_song",
+        "test_search_returns_empty_for_no_match"
+      ],
+      "totalLines": 120,
+      "hasStructuralAnalysis": true
+    },
+    "tests/test_streaks.py": {
+      "filePath": "tests/test_streaks.py",
+      "contentHash": "07a7c52a1e50a4dd4fdf1b3411b31013550f937aa6d728a68d25e724ba86b375",
+      "functions": [
+        {
+          "name": "app",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "user",
+          "params": [
+            "app"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "test_streak_starts_at_1_for_new_user",
+          "params": [
+            "app",
+            "user"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "test_streak_increments_on_consecutive_day",
+          "params": [
+            "app",
+            "user"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "test_streak_does_not_double_count_same_day",
+          "params": [
+            "app",
+            "user"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "test_streak_resets_after_skipped_day",
+          "params": [
+            "app",
+            "user"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "test_streak_increments_on_sunday",
+          "params": [
+            "app",
+            "user"
+          ],
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timedelta",
+            "timezone"
+          ]
+        },
+        {
+          "source": "app",
+          "specifiers": [
+            "create_app",
+            "db"
+          ]
+        },
+        {
+          "source": "models",
+          "specifiers": [
+            "User"
+          ]
+        },
+        {
+          "source": "services.streak_service",
+          "specifiers": [
+            "update_listening_streak",
+            "get_streak"
+          ]
+        }
+      ],
+      "exports": [
+        "app",
+        "user",
+        "test_streak_starts_at_1_for_new_user",
+        "test_streak_increments_on_consecutive_day",
+        "test_streak_does_not_double_count_same_day",
+        "test_streak_resets_after_skipped_day",
+        "test_streak_increments_on_sunday"
+      ],
+      "totalLines": 97,
+      "hasStructuralAnalysis": true
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "aa20c80a7df2477048adaf736a81b9d81a891beb85eab49d05224c79d29fd64a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 118,
+      "hasStructuralAnalysis": true
+    },
+    "requirements.txt": {
+      "filePath": "requirements.txt",
+      "contentHash": "4564f6ab65b4579b3c8296c49555ba7ea56be79acdf41c978f16b988afe1f487",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": false
+    },
+    ".understand-anything/.understandignore": {
+      "filePath": ".understand-anything/.understandignore",
+      "contentHash": "479cd152ddf7c3a707ca78ea9c3d95c10d63bd0254ce4e675d14f4a1a29f9b6c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 46,
+      "hasStructuralAnalysis": false
+    }
+  }
+}

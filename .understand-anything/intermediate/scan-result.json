@@ -1,0 +1,214 @@
+{
+  "name": "ai201-project5-mixtape-starter",
+  "description": "A social music app where friends share songs, build collaborative playlists, and track listening stats. This is the starter repo for Project 5: Mixtape Bug Hunt, with five open issues to find, fix, and document in the services layer.",
+  "languages": [
+    "markdown",
+    "python",
+    "txt",
+    "unknown"
+  ],
+  "frameworks": [
+    "Flask",
+    "SQLAlchemy"
+  ],
+  "files": [
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app.py",
+      "language": "python",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "models.py",
+      "language": "python",
+      "sizeLines": 177,
+      "fileCategory": "code"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 117,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "requirements.txt",
+      "language": "txt",
+      "sizeLines": 5,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "routes/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "routes/feed.py",
+      "language": "python",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "routes/playlists.py",
+      "language": "python",
+      "sizeLines": 54,
+      "fileCategory": "code"
+    },
+    {
+      "path": "routes/songs.py",
+      "language": "python",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "routes/users.py",
+      "language": "python",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "seed_data.py",
+      "language": "python",
+      "sizeLines": 187,
+      "fileCategory": "code"
+    },
+    {
+      "path": "services/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "services/feed_service.py",
+      "language": "python",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "services/notification_service.py",
+      "language": "python",
+      "sizeLines": 142,
+      "fileCategory": "code"
+    },
+    {
+      "path": "services/playlist_service.py",
+      "language": "python",
+      "sizeLines": 96,
+      "fileCategory": "code"
+    },
+    {
+      "path": "services/search_service.py",
+      "language": "python",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "services/streak_service.py",
+      "language": "python",
+      "sizeLines": 94,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_playlists.py",
+      "language": "python",
+      "sizeLines": 86,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_search.py",
+      "language": "python",
+      "sizeLines": 119,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_streaks.py",
+      "language": "python",
+      "sizeLines": 96,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 21,
+  "filteredByIgnore": 0,
+  "estimatedComplexity": "small",
+  "importMap": {
+    ".understand-anything/.understandignore": [],
+    "app.py": [],
+    "models.py": [
+      "app.py"
+    ],
+    "README.md": [],
+    "requirements.txt": [],
+    "routes/__init__.py": [],
+    "routes/feed.py": [
+      "services/feed_service.py"
+    ],
+    "routes/playlists.py": [
+      "services/notification_service.py",
+      "services/playlist_service.py"
+    ],
+    "routes/songs.py": [
+      "services/notification_service.py",
+      "services/search_service.py",
+      "services/streak_service.py"
+    ],
+    "routes/users.py": [
+      "app.py",
+      "models.py",
+      "services/notification_service.py",
+      "services/streak_service.py"
+    ],
+    "seed_data.py": [
+      "app.py",
+      "models.py"
+    ],
+    "services/__init__.py": [],
+    "services/feed_service.py": [
+      "app.py",
+      "models.py"
+    ],
+    "services/notification_service.py": [
+      "app.py",
+      "models.py"
+    ],
+    "services/playlist_service.py": [
+      "app.py",
+      "models.py"
+    ],
+    "services/search_service.py": [
+      "app.py",
+      "models.py"
+    ],
+    "services/streak_service.py": [
+      "app.py",
+      "models.py"
+    ],
+    "tests/__init__.py": [],
+    "tests/test_playlists.py": [
+      "app.py",
+      "models.py",
+      "services/playlist_service.py"
+    ],
+    "tests/test_search.py": [
+      "app.py",
+      "models.py",
+      "services/search_service.py"
+    ],
+    "tests/test_streaks.py": [
+      "app.py",
+      "models.py",
+      "services/streak_service.py"
+    ]
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "nodes": [
+    {
+      "id": "file:routes/songs.py",
+      "type": "file",
+      "name": "songs.py",
+      "filePath": "routes/songs.py",
+      "summary": "Flask blueprint defining the song-related HTTP routes: search, song detail, rating, and listen-tracking endpoints that delegate to the search, notification, and streak services.",
+      "tags": ["api-handler", "routes", "flask", "songs"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:routes/songs.py:search",
+      "type": "function",
+      "name": "search",
+      "filePath": "routes/songs.py",
+      "lineRange": [12, 17],
+      "summary": "Route handler for GET /search that validates the query parameter and returns matching songs via search_songs, wrapped with a result count.",
+      "tags": ["api-handler", "search", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:routes/songs.py:get_song_detail",
+      "type": "function",
+      "name": "get_song_detail",
+      "filePath": "routes/songs.py",
+      "lineRange": [21, 26],
+      "summary": "Route handler for GET /<song_id> that fetches a single song's details and returns a 404 JSON error when the song is not found.",
+      "tags": ["api-handler", "error-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:routes/songs.py:rate",
+      "type": "function",
+      "name": "rate",
+      "filePath": "routes/songs.py",
+      "lineRange": [30, 40],
+      "summary": "Route handler for POST /<song_id>/rate that validates the request body and submits a rating via the notification service, returning the created rating or a validation error.",
+      "tags": ["api-handler", "validation", "rating"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:routes/songs.py:listen",
+      "type": "function",
+      "name": "listen",
+      "filePath": "routes/songs.py",
+      "lineRange": [44, 53],
+      "summary": "Route handler for POST /<song_id>/listen that records a listening event for a user via the streak service and returns the created event or a validation error.",
+      "tags": ["api-handler", "validation", "streak"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:services/search_service.py",
+      "type": "file",
+      "name": "search_service.py",
+      "filePath": "services/search_service.py",
+      "summary": "Implements song search and single-song lookup logic, querying the Song model by title/artist and joining tag associations; the outerjoin without a distinct() call can produce duplicate results for multi-tag songs.",
+      "tags": ["service", "search", "database", "bug-candidate"],
+      "complexity": "simple",
+      "languageNotes": "search_songs performs an outerjoin against the song_tags association table but does not deduplicate the resulting rows, so a song with multiple tags can appear multiple times in the results — a likely source of the bug this project's test suite targets."
+    },
+    {
+      "id": "function:services/search_service.py:search_songs",
+      "type": "function",
+      "name": "search_songs",
+      "filePath": "services/search_service.py",
+      "lineRange": [11, 37],
+      "summary": "Searches songs by case-insensitive title or artist match, joining the song_tags table to include tag associations; missing distinct() causes duplicate rows for songs with several tags.",
+      "tags": ["search", "database", "bug-candidate"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:services/search_service.py:get_song",
+      "type": "function",
+      "name": "get_song",
+      "filePath": "services/search_service.py",
+      "lineRange": [40, 53],
+      "summary": "Fetches a single song by its UUID, raising ValueError when no matching song exists.",
+      "tags": ["lookup", "database", "error-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_search.py",
+      "type": "file",
+      "name": "test_search.py",
+      "filePath": "tests/test_search.py",
+      "summary": "Pytest suite for the search service covering matching-song search and, notably, duplicate-prevention behavior for songs with zero, one, or multiple tags.",
+      "tags": ["test", "pytest", "search", "fixtures"],
+      "complexity": "complex",
+      "languageNotes": "Includes dedicated fixtures (app, seed_songs) that seed users, tags, songs, and song_tags associations, and several tests asserting no duplicate rows are returned regardless of tag count — directly exercising the search_songs join/duplicate bug."
+    },
+    {
+      "id": "function:tests/test_search.py:app",
+      "type": "function",
+      "name": "app",
+      "filePath": "tests/test_search.py",
+      "lineRange": [14, 19],
+      "summary": "Pytest fixture that creates a Flask app instance with an in-memory database, creating and tearing down all tables around each test.",
+      "tags": ["test", "fixture", "setup"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_search.py:seed_songs",
+      "type": "function",
+      "name": "seed_songs",
+      "filePath": "tests/test_search.py",
+      "lineRange": [23, 78],
+      "summary": "Pytest fixture that seeds a test user, several tags, songs, and song-tag associations used across the search tests.",
+      "tags": ["test", "fixture", "seed-data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_search.py:test_search_returns_matching_songs",
+      "type": "function",
+      "name": "test_search_returns_matching_songs",
+      "filePath": "tests/test_search.py",
+      "lineRange": [81, 86],
+      "summary": "Verifies that search_songs returns songs matching the query string.",
+      "tags": ["test", "search"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_search.py:test_search_no_duplicates_single_tag_song",
+      "type": "function",
+      "name": "test_search_no_duplicates_single_tag_song",
+      "filePath": "tests/test_search.py",
+      "lineRange": [89, 94],
+      "summary": "Asserts that a song with exactly one tag appears only once in the search results.",
+      "tags": ["test", "bug-regression", "search"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_search.py:test_search_no_duplicates_multi_tag_song",
+      "type": "function",
+      "name": "test_search_no_duplicates_multi_tag_song",
+      "filePath": "tests/test_search.py",
+      "lineRange": [97, 104],
+      "summary": "Asserts that a song with multiple tags appears only once in the search results, guarding against duplicate rows from the outerjoin in search_songs.",
+      "tags": ["test", "bug-regression", "search"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_search.py:test_search_no_duplicates_no_tag_song",
+      "type": "function",
+      "name": "test_search_no_duplicates_no_tag_song",
+      "filePath": "tests/test_search.py",
+      "lineRange": [107, 112],
+      "summary": "Asserts that a song with no tags still appears exactly once in the search results.",
+      "tags": ["test", "bug-regression", "search"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_search.py:test_search_returns_empty_for_no_match",
+      "type": "function",
+      "name": "test_search_returns_empty_for_no_match",
+      "filePath": "tests/test_search.py",
+      "lineRange": [115, 119],
+      "summary": "Verifies that search_songs returns an empty list when no songs match the query.",
+      "tags": ["test", "search", "edge-case"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:routes/songs.py", "target": "function:routes/songs.py:search", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:routes/songs.py", "target": "function:routes/songs.py:get_song_detail", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:routes/songs.py", "target": "function:routes/songs.py:rate", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:routes/songs.py", "target": "function:routes/songs.py:listen", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:routes/songs.py", "target": "function:routes/songs.py:search", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:routes/songs.py", "target": "function:routes/songs.py:get_song_detail", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:routes/songs.py", "target": "function:routes/songs.py:rate", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:routes/songs.py", "target": "function:routes/songs.py:listen", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:routes/songs.py", "target": "file:services/notification_service.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:routes/songs.py", "target": "file:services/search_service.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:routes/songs.py", "target": "file:services/streak_service.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "function:routes/songs.py:search", "target": "function:services/search_service.py:search_songs", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:routes/songs.py:get_song_detail", "target": "function:services/search_service.py:get_song", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:routes/songs.py:rate", "target": "function:services/notification_service.py:rate_song", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:routes/songs.py:listen", "target": "function:services/streak_service.py:record_listening_event", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:services/search_service.py", "target": "function:services/search_service.py:search_songs", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:services/search_service.py", "target": "function:services/search_service.py:get_song", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:services/search_service.py", "target": "function:services/search_service.py:search_songs", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:services/search_service.py", "target": "function:services/search_service.py:get_song", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:services/search_service.py", "target": "file:app.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:services/search_service.py", "target": "file:models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:tests/test_search.py", "target": "function:tests/test_search.py:app", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:tests/test_search.py", "target": "function:tests/test_search.py:seed_songs", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:tests/test_search.py", "target": "function:tests/test_search.py:test_search_returns_matching_songs", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:tests/test_search.py", "target": "function:tests/test_search.py:test_search_no_duplicates_single_tag_song", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:tests/test_search.py", "target": "function:tests/test_search.py:test_search_no_duplicates_multi_tag_song", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:tests/test_search.py", "target": "function:tests/test_search.py:test_search_no_duplicates_no_tag_song", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:tests/test_search.py", "target": "function:tests/test_search.py:test_search_returns_empty_for_no_match", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:tests/test_search.py", "target": "file:app.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:tests/test_search.py", "target": "file:models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:tests/test_search.py", "target": "file:services/search_service.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "function:tests/test_search.py:test_search_returns_matching_songs", "target": "function:services/search_service.py:search_songs", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:tests/test_search.py:test_search_no_duplicates_single_tag_song", "target": "function:services/search_service.py:search_songs", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:tests/test_search.py:test_search_no_duplicates_multi_tag_song", "target": "function:services/search_service.py:search_songs", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:tests/test_search.py:test_search_no_duplicates_no_tag_song", "target": "function:services/search_service.py:search_songs", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:tests/test_search.py:test_search_returns_empty_for_no_match", "target": "function:services/search_service.py:search_songs", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:services/search_service.py", "target": "file:tests/test_search.py", "type": "tested_by", "direction": "forward", "weight": 0.5}
+  ]
+}
