@@ -1,0 +1,27 @@
+{
+  "projectRoot": "/Users/adam_solomon_home/Downloads/ai201-project5-mixtape-starter",
+  "sourceFilePaths": [
+    "app.py",
+    "models.py",
+    "seed_data.py",
+    "routes/__init__.py",
+    "routes/feed.py",
+    "routes/playlists.py",
+    "routes/songs.py",
+    "routes/users.py",
+    "services/__init__.py",
+    "services/feed_service.py",
+    "services/notification_service.py",
+    "services/playlist_service.py",
+    "services/search_service.py",
+    "services/streak_service.py",
+    "tests/__init__.py",
+    "tests/test_playlists.py",
+    "tests/test_search.py",
+    "tests/test_streaks.py",
+    "README.md",
+    "requirements.txt",
+    ".understand-anything/.understandignore"
+  ],
+  "gitCommitHash": "2dfdeaa962d3a715cd7194b2eb7a84ade9f598b5"
+}

@@ -1,0 +1,224 @@
+{
+  "nodes": [
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Project overview for the Mixtape social music app, describing the app structure, setup instructions, and the five open bugs (including the Friends Listening Now feed bug in feed_service.py) that the bug-hunt exercise asks contributors to fix.",
+      "tags": ["documentation", "entry-point", "bug-hunt", "setup-guide"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:requirements.txt",
+      "type": "config",
+      "name": "requirements.txt",
+      "filePath": "requirements.txt",
+      "summary": "Python dependency manifest pinning minimum versions for Flask, Flask-SQLAlchemy, SQLAlchemy, python-dotenv, and pytest.",
+      "tags": ["configuration", "dependencies", "python", "build-system"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:routes/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "routes/__init__.py",
+      "summary": "Empty package marker file that makes routes/ importable as a Python package.",
+      "tags": ["package-marker", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:routes/feed.py",
+      "type": "file",
+      "name": "feed.py",
+      "filePath": "routes/feed.py",
+      "summary": "Flask Blueprint exposing the friends-listening-now and activity-feed HTTP endpoints, delegating business logic to services/feed_service.py and translating ValueError into 404 JSON responses.",
+      "tags": ["api-handler", "flask-blueprint", "routing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:services/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "services/__init__.py",
+      "summary": "Empty package marker file that makes services/ importable as a Python package.",
+      "tags": ["package-marker", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:services/feed_service.py",
+      "type": "file",
+      "name": "feed_service.py",
+      "filePath": "services/feed_service.py",
+      "summary": "Service layer implementing the Friends Listening Now and general activity feed logic, querying ListeningEvent rows for a user's friends and shaping the results into dicts for the API. This is the file that contains the open 'shows people from yesterday' bug referenced in the README.",
+      "tags": ["service", "data-access", "feed-logic", "bug-hunt"],
+      "complexity": "moderate",
+      "languageNotes": "Uses SQLAlchemy ORM query chaining with a fixed 24-hour RECENT_THRESHOLD cutoff for the 'listening now' feed, distinct from the unfiltered, limit-based activity feed."
+    },
+    {
+      "id": "file:tests/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "tests/__init__.py",
+      "summary": "Empty package marker file that makes tests/ importable as a Python package for pytest discovery.",
+      "tags": ["package-marker", "test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.understand-anything/.understandignore",
+      "type": "config",
+      "name": ".understandignore",
+      "filePath": ".understand-anything/.understandignore",
+      "summary": "Ignore-pattern configuration for the Understand-Anything analysis tool, excluding paths that should not be scanned when building the project's knowledge graph.",
+      "tags": ["configuration", "tooling", "ignore-rules"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:routes/feed.py:listening_now",
+      "type": "function",
+      "name": "listening_now",
+      "filePath": "routes/feed.py",
+      "lineRange": [10, 15],
+      "summary": "Route handler for GET /<user_id>/listening-now that calls get_friends_listening_now and returns the feed as JSON, or a 404 error if the user is not found.",
+      "tags": ["api-handler", "flask-route"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:routes/feed.py:activity",
+      "type": "function",
+      "name": "activity",
+      "filePath": "routes/feed.py",
+      "lineRange": [19, 24],
+      "summary": "Route handler for GET /<user_id>/activity that calls get_activity_feed and returns the feed as JSON, or a 404 error if the user is not found.",
+      "tags": ["api-handler", "flask-route"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:services/feed_service.py:get_friends_listening_now",
+      "type": "function",
+      "name": "get_friends_listening_now",
+      "filePath": "services/feed_service.py",
+      "lineRange": [16, 62],
+      "summary": "Queries ListeningEvent rows for the user's friends within a 24-hour RECENT_THRESHOLD window, deduplicates to the most recent song per friend, and returns friend/song/listened_at dicts ordered by recency.",
+      "tags": ["service", "data-access", "feed-logic"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:services/feed_service.py:get_activity_feed",
+      "type": "function",
+      "name": "get_activity_feed",
+      "filePath": "services/feed_service.py",
+      "lineRange": [65, 105],
+      "summary": "Returns the most recent N listening events across all of a user's friends, unfiltered by recency, as friend/song/listened_at dicts ordered by most recent first.",
+      "tags": ["service", "data-access", "feed-logic"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:routes/feed.py",
+      "target": "function:routes/feed.py:listening_now",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:routes/feed.py",
+      "target": "function:routes/feed.py:activity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:routes/feed.py",
+      "target": "function:routes/feed.py:listening_now",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:routes/feed.py",
+      "target": "function:routes/feed.py:activity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:services/feed_service.py",
+      "target": "function:services/feed_service.py:get_friends_listening_now",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:services/feed_service.py",
+      "target": "function:services/feed_service.py:get_activity_feed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:services/feed_service.py",
+      "target": "function:services/feed_service.py:get_friends_listening_now",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:services/feed_service.py",
+      "target": "function:services/feed_service.py:get_activity_feed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:routes/feed.py",
+      "target": "file:services/feed_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:services/feed_service.py",
+      "target": "file:app.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:services/feed_service.py",
+      "target": "file:models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:routes/feed.py:listening_now",
+      "target": "function:services/feed_service.py:get_friends_listening_now",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:routes/feed.py:activity",
+      "target": "function:services/feed_service.py:get_activity_feed",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:services/feed_service.py",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:routes/feed.py",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

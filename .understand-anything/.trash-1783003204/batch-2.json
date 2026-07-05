@@ -1,0 +1,210 @@
+{
+  "nodes": [
+    {
+      "id": "file:routes/playlists.py",
+      "type": "file",
+      "name": "playlists.py",
+      "filePath": "routes/playlists.py",
+      "summary": "Flask blueprint exposing playlist HTTP routes: create a playlist, fetch playlist details, list a playlist's songs, and add a song to a playlist, delegating business logic to the playlist and notification services.",
+      "tags": ["api-handler", "route", "flask", "playlist"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:routes/playlists.py:create",
+      "type": "function",
+      "name": "create",
+      "filePath": "routes/playlists.py",
+      "lineRange": [11, 22],
+      "summary": "Handles POST / to create a new playlist from JSON body fields (name, created_by, is_collaborative), validating required fields and delegating to create_playlist.",
+      "tags": ["api-handler", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:routes/playlists.py:get_detail",
+      "type": "function",
+      "name": "get_detail",
+      "filePath": "routes/playlists.py",
+      "lineRange": [26, 31],
+      "summary": "Handles GET /<playlist_id> to return playlist details, returning 404 when the playlist is not found.",
+      "tags": ["api-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:routes/playlists.py:get_songs",
+      "type": "function",
+      "name": "get_songs",
+      "filePath": "routes/playlists.py",
+      "lineRange": [35, 40],
+      "summary": "Handles GET /<playlist_id>/songs to list the songs in a playlist along with a count.",
+      "tags": ["api-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:routes/playlists.py:add_song",
+      "type": "function",
+      "name": "add_song",
+      "filePath": "routes/playlists.py",
+      "lineRange": [44, 54],
+      "summary": "Handles POST /<playlist_id>/songs to add a song to a playlist by delegating to the notification service's add_to_playlist, which also triggers a notification.",
+      "tags": ["api-handler", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:routes/users.py",
+      "type": "file",
+      "name": "users.py",
+      "filePath": "routes/users.py",
+      "summary": "Flask blueprint exposing user-related HTTP routes: fetch a user, get listening streak, list notifications, and mark a notification as read.",
+      "tags": ["api-handler", "route", "flask", "user"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:routes/users.py:get_user",
+      "type": "function",
+      "name": "get_user",
+      "filePath": "routes/users.py",
+      "lineRange": [13, 17],
+      "summary": "Handles GET /<user_id> to fetch a user by ID and return its dict representation, or a 404 if not found.",
+      "tags": ["api-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:routes/users.py:streak",
+      "type": "function",
+      "name": "streak",
+      "filePath": "routes/users.py",
+      "lineRange": [21, 26],
+      "summary": "Handles GET /<user_id>/streak to return a user's current listening streak via the streak service.",
+      "tags": ["api-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:routes/users.py:notifications",
+      "type": "function",
+      "name": "notifications",
+      "filePath": "routes/users.py",
+      "lineRange": [30, 36],
+      "summary": "Handles GET /<user_id>/notifications, parsing the unread_only query flag and returning the user's notifications with a count.",
+      "tags": ["api-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:routes/users.py:read_notification",
+      "type": "function",
+      "name": "read_notification",
+      "filePath": "routes/users.py",
+      "lineRange": [40, 45],
+      "summary": "Handles POST /notifications/<notification_id>/read to mark a notification as read via the notification service.",
+      "tags": ["api-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:services/notification_service.py",
+      "type": "file",
+      "name": "notification_service.py",
+      "filePath": "services/notification_service.py",
+      "summary": "Service layer handling notification creation/retrieval, adding songs to playlists (which triggers notifications to the original sharer), and saving song ratings.",
+      "tags": ["service", "business-logic", "notification", "playlist"],
+      "complexity": "moderate",
+      "languageNotes": "add_to_playlist and rate_song use local imports (Playlist model, playlist_service) to avoid circular import issues between services."
+    },
+    {
+      "id": "function:services/notification_service.py:create_notification",
+      "type": "function",
+      "name": "create_notification",
+      "filePath": "services/notification_service.py",
+      "lineRange": [13, 32],
+      "summary": "Creates and persists a Notification record for a given user with a type and body message.",
+      "tags": ["service", "notification"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:services/notification_service.py:add_to_playlist",
+      "type": "function",
+      "name": "add_to_playlist",
+      "filePath": "services/notification_service.py",
+      "lineRange": [35, 70],
+      "summary": "Validates a song, adding user, and playlist exist, appends the song to the playlist if not already present, and notifies the song's original sharer unless they are the one adding it.",
+      "tags": ["service", "playlist", "notification", "validation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:services/notification_service.py:rate_song",
+      "type": "function",
+      "name": "rate_song",
+      "filePath": "services/notification_service.py",
+      "lineRange": [73, 110],
+      "summary": "Validates a rating score (1-5), song, and user, then creates or updates the user's Rating for that song.",
+      "tags": ["service", "rating", "validation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:services/notification_service.py:get_notifications",
+      "type": "function",
+      "name": "get_notifications",
+      "filePath": "services/notification_service.py",
+      "lineRange": [113, 128],
+      "summary": "Queries notifications for a user, optionally filtered to unread only, ordered by most recent first, and serializes them to dicts.",
+      "tags": ["service", "notification", "query"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:services/notification_service.py:mark_as_read",
+      "type": "function",
+      "name": "mark_as_read",
+      "filePath": "services/notification_service.py",
+      "lineRange": [131, 142],
+      "summary": "Marks a notification's read flag as true and commits the change, raising an error if the notification does not exist.",
+      "tags": ["service", "notification"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    { "source": "file:routes/playlists.py", "target": "function:routes/playlists.py:create", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:routes/playlists.py", "target": "function:routes/playlists.py:get_detail", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:routes/playlists.py", "target": "function:routes/playlists.py:get_songs", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:routes/playlists.py", "target": "function:routes/playlists.py:add_song", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:routes/playlists.py", "target": "function:routes/playlists.py:create", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:routes/playlists.py", "target": "function:routes/playlists.py:get_detail", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:routes/playlists.py", "target": "function:routes/playlists.py:get_songs", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:routes/playlists.py", "target": "function:routes/playlists.py:add_song", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:routes/playlists.py", "target": "file:services/notification_service.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:routes/playlists.py", "target": "file:services/playlist_service.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "function:routes/playlists.py:create", "target": "function:services/playlist_service.py:create_playlist", "type": "calls", "direction": "forward", "weight": 0.8 },
+    { "source": "function:routes/playlists.py:get_detail", "target": "function:services/playlist_service.py:get_playlist", "type": "calls", "direction": "forward", "weight": 0.8 },
+    { "source": "function:routes/playlists.py:get_songs", "target": "function:services/playlist_service.py:get_playlist_songs", "type": "calls", "direction": "forward", "weight": 0.8 },
+    { "source": "function:routes/playlists.py:add_song", "target": "function:services/notification_service.py:add_to_playlist", "type": "calls", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:routes/users.py", "target": "function:routes/users.py:get_user", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:routes/users.py", "target": "function:routes/users.py:streak", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:routes/users.py", "target": "function:routes/users.py:notifications", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:routes/users.py", "target": "function:routes/users.py:read_notification", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:routes/users.py", "target": "function:routes/users.py:get_user", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:routes/users.py", "target": "function:routes/users.py:streak", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:routes/users.py", "target": "function:routes/users.py:notifications", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:routes/users.py", "target": "function:routes/users.py:read_notification", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:routes/users.py", "target": "file:app.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:routes/users.py", "target": "file:models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:routes/users.py", "target": "file:services/notification_service.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:routes/users.py", "target": "file:services/streak_service.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "function:routes/users.py:get_user", "target": "class:models.py:User", "type": "calls", "direction": "forward", "weight": 0.7 },
+    { "source": "function:routes/users.py:streak", "target": "function:services/streak_service.py:get_streak", "type": "calls", "direction": "forward", "weight": 0.8 },
+    { "source": "function:routes/users.py:notifications", "target": "function:services/notification_service.py:get_notifications", "type": "calls", "direction": "forward", "weight": 0.8 },
+    { "source": "function:routes/users.py:read_notification", "target": "function:services/notification_service.py:mark_as_read", "type": "calls", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:services/notification_service.py", "target": "function:services/notification_service.py:create_notification", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:services/notification_service.py", "target": "function:services/notification_service.py:add_to_playlist", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:services/notification_service.py", "target": "function:services/notification_service.py:rate_song", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:services/notification_service.py", "target": "function:services/notification_service.py:get_notifications", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:services/notification_service.py", "target": "function:services/notification_service.py:mark_as_read", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:services/notification_service.py", "target": "function:services/notification_service.py:create_notification", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:services/notification_service.py", "target": "function:services/notification_service.py:add_to_playlist", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:services/notification_service.py", "target": "function:services/notification_service.py:rate_song", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:services/notification_service.py", "target": "function:services/notification_service.py:get_notifications", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:services/notification_service.py", "target": "function:services/notification_service.py:mark_as_read", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:services/notification_service.py", "target": "file:app.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:services/notification_service.py", "target": "file:models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "function:services/notification_service.py:add_to_playlist", "target": "function:services/notification_service.py:create_notification", "type": "calls", "direction": "forward", "weight": 0.8 },
+    { "source": "function:services/notification_service.py:add_to_playlist", "target": "file:services/playlist_service.py", "type": "depends_on", "direction": "forward", "weight": 0.6 }
+  ]
+}

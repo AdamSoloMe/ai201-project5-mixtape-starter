@@ -1,0 +1,78 @@
+[
+  {
+    "order": 1,
+    "title": "Project Overview & Bug Hunt",
+    "description": "Start with the README to understand what Mixtape is: a social music app where friends share songs, build collaborative playlists, and track listening stats. The README lists the five open bugs you're hunting, all of which live in the services/ layer, and explicitly instructs you to trace each bug from its HTTP route down through its service rather than jumping straight to the fix.",
+    "nodeIds": ["document:README.md"]
+  },
+  {
+    "order": 2,
+    "title": "Application Entry Point",
+    "description": "app.py is the Flask application factory: it configures the database connection, registers every route blueprint (playlists, users, songs, feed), and creates the database tables on startup. With a fan-in of 9, nearly every service and test module in the codebase imports this file to get its db handle, making it the load-bearing hub you must understand before anything else.",
+    "nodeIds": ["file:app.py"],
+    "languageLesson": "Flask's application factory pattern centralizes app configuration and blueprint registration in one place, keeping route modules decoupled from app setup and making the app easier to test in isolation."
+  },
+  {
+    "order": 3,
+    "title": "The Data Model",
+    "description": "models.py defines the SQLAlchemy ORM classes that every other module depends on: Users, Songs, Tags, ListeningEvents, Ratings, Playlists, and Notifications. It has the highest fan-in in the entire project (10 incoming references), meaning it is the shared vocabulary that routes, services, and tests all speak. As the README advises, understanding these tables first makes every bug you'll investigate next much easier to reason about.",
+    "nodeIds": ["file:models.py"]
+  },
+  {
+    "order": 4,
+    "title": "Issue #1: Streak Route to Service",
+    "description": "Follow the README's prescribed reading pattern: routes/users.py exposes the HTTP endpoint that records a listening event, then calls into services/streak_service.py to update the user's consecutive-day streak. This is the first bug hunt stop — a user reports their streak keeps resetting even though they listen every day, and the fix requires tracing this exact call chain rather than guessing from the endpoint alone.",
+    "nodeIds": ["file:routes/users.py", "file:services/streak_service.py"],
+    "languageLesson": "Python's datetime.weekday() returns 0 for Monday through 6 for Sunday. A guard clause like `if today.weekday() != 6` silently special-cases Sundays — a classic off-by-one-day trap when reasoning about 'is this consecutive?' logic across week boundaries."
+  },
+  {
+    "order": 5,
+    "title": "Issue #1 Verified: Streak Tests",
+    "description": "test_streaks.py is the pytest suite for streak_service.py, and it already contains test_streak_increments_on_sunday — a test written specifically to catch the Sunday reset bug from Step 4. This shows the project's workflow: the test layer sits directly above each service and gives you a fast way to confirm whether your fix actually resolves the reported issue before you move on.",
+    "nodeIds": ["file:tests/test_streaks.py"]
+  },
+  {
+    "order": 6,
+    "title": "Issue #2: Friends Feed Route to Service",
+    "description": "routes/feed.py exposes the 'Friends Listening Now' and activity-feed endpoints, both of which delegate to services/feed_service.py. This service contains the second open bug: the feed shows people from yesterday, which points to a suspect cutoff or RECENT_THRESHOLD calculation used to decide what counts as 'recent'. Note that this is the only route/service pair the README itself links to directly via its own documentation edges, signaling it's a focal point of the exercise.",
+    "nodeIds": ["file:routes/feed.py", "file:services/feed_service.py"]
+  },
+  {
+    "order": 7,
+    "title": "Issue #3: Song Search Route to Service",
+    "description": "routes/songs.py is the busiest route module in the project (fan-out of 6), fanning out to search, notification, and streak services. Trace its search endpoint down into services/search_service.py, where an outerjoin against the song_tags table is missing a .distinct() call — producing duplicate rows whenever a song has more than one tag. This is the third bug: the same song appearing twice in search results.",
+    "nodeIds": ["file:routes/songs.py", "file:services/search_service.py"],
+    "languageLesson": "SQLAlchemy's outerjoin against a many-to-many association table (like song_tags) multiplies each row by the number of matching join partners. Without .distinct(), a song with 3 tags returns 3 identical rows — a common ORM pitfall whenever a query joins across a one-to-many or many-to-many relationship purely to filter or search."
+  },
+  {
+    "order": 8,
+    "title": "Issue #3 Verified: Search Tests",
+    "description": "test_search.py is the pytest suite covering search_service.py, and it already includes coverage aimed at duplicate-prevention behavior. Reading this test before fixing the bug from Step 7 tells you exactly what output shape the fix needs to produce — a set of unique songs regardless of how many tags they carry.",
+    "nodeIds": ["file:tests/test_search.py"]
+  },
+  {
+    "order": 9,
+    "title": "Issue #4: Notifications for Ratings vs Playlists",
+    "description": "services/notification_service.py handles three responsibilities: creating and retrieving notifications, adding songs to playlists, and saving song ratings. Both routes/songs.py (for rating) and routes/playlists.py (for adding songs) call into it, but only add_to_playlist creates a notification — rate_song does not, even though users expect to be notified either way. This asymmetry between two sibling functions in the same file is the fourth open bug.",
+    "nodeIds": ["file:services/notification_service.py", "file:routes/songs.py", "file:routes/playlists.py"]
+  },
+  {
+    "order": 10,
+    "title": "Issue #5: Playlist Route to Service",
+    "description": "routes/playlists.py exposes the endpoint for viewing a playlist's songs, which calls services/playlist_service.py's get_playlist_songs function. That function returns songs[:-1] — a Python slice that silently drops the last element of the list — so the final song a friend added to a shared playlist never shows up. This is the fifth and final bug from the README's list, and it demonstrates how an easily-missed slicing mistake can hide in otherwise working code.",
+    "nodeIds": ["file:routes/playlists.py", "file:services/playlist_service.py"],
+    "languageLesson": "Python's negative slice indices count from the end of a sequence: list[:-1] returns every element except the last one. It's a useful idiom for trimming a trailing item on purpose, but an easy off-by-one mistake to introduce accidentally when the intent was list[:] or list[:len(list)]."
+  },
+  {
+    "order": 11,
+    "title": "Issue #5 Verified: Playlist Tests",
+    "description": "test_playlists.py is the pytest suite for playlist_service.py. Running it after fixing the slicing bug from Step 10 confirms that get_playlist_songs now returns every song a friend added, closing out the bug-hunt workflow established across Steps 4 through 11: route leads to service, service leads to test.",
+    "nodeIds": ["file:tests/test_playlists.py"]
+  },
+  {
+    "order": 12,
+    "title": "Seeding & Dependencies",
+    "description": "seed_data.py is a standalone script that resets and repopulates the database with sample users, songs, and playlists, giving you realistic data to exercise all five bugs against locally. requirements.txt lists the project's dependencies — Flask, Flask-SQLAlchemy, SQLAlchemy, python-dotenv, and pytest — which together explain how the app, the ORM, and the test suite you used in Steps 5, 8, and 11 all fit together.",
+    "nodeIds": ["file:seed_data.py", "config:requirements.txt"]
+  }
+]

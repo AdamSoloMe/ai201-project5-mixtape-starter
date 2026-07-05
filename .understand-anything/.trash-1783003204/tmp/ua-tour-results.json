@@ -1,0 +1,450 @@
+{
+  "scriptCompleted": true,
+  "entryPointCandidates": [
+    {
+      "id": "file:app.py",
+      "score": 5,
+      "name": "app.py",
+      "summary": "Flask application factory that configures the database, registers all route blueprints, and creates tables on startup."
+    },
+    {
+      "id": "document:README.md",
+      "score": 5,
+      "name": "README.md",
+      "summary": "Project overview describing app structure, setup instructions, and the five open bugs to fix."
+    },
+    {
+      "id": "file:seed_data.py",
+      "score": 2,
+      "name": "seed_data.py",
+      "summary": "Standalone script that resets and seeds the database with sample data."
+    },
+    {
+      "id": "file:tests/test_playlists.py",
+      "score": 2,
+      "name": "test_playlists.py",
+      "summary": "Pytest suite for the playlist service."
+    },
+    {
+      "id": "file:tests/test_streaks.py",
+      "score": 2,
+      "name": "test_streaks.py",
+      "summary": "Pytest suite for the streak service, including test_streak_increments_on_sunday which targets the Sunday bug."
+    }
+  ],
+  "fanInRanking": [
+    {
+      "id": "file:models.py",
+      "fanIn": 10,
+      "name": "models.py"
+    },
+    {
+      "id": "file:app.py",
+      "fanIn": 9,
+      "name": "app.py"
+    },
+    {
+      "id": "file:services/streak_service.py",
+      "fanIn": 7,
+      "name": "streak_service.py"
+    },
+    {
+      "id": "file:services/notification_service.py",
+      "fanIn": 6,
+      "name": "notification_service.py"
+    },
+    {
+      "id": "file:services/playlist_service.py",
+      "fanIn": 5,
+      "name": "playlist_service.py"
+    },
+    {
+      "id": "file:services/search_service.py",
+      "fanIn": 5,
+      "name": "search_service.py"
+    },
+    {
+      "id": "file:services/feed_service.py",
+      "fanIn": 3,
+      "name": "feed_service.py"
+    },
+    {
+      "id": "file:routes/feed.py",
+      "fanIn": 2,
+      "name": "feed.py"
+    },
+    {
+      "id": "file:tests/test_playlists.py",
+      "fanIn": 1,
+      "name": "test_playlists.py"
+    },
+    {
+      "id": "file:tests/test_streaks.py",
+      "fanIn": 1,
+      "name": "test_streaks.py"
+    },
+    {
+      "id": "file:routes/playlists.py",
+      "fanIn": 1,
+      "name": "playlists.py"
+    },
+    {
+      "id": "file:routes/users.py",
+      "fanIn": 1,
+      "name": "users.py"
+    },
+    {
+      "id": "file:routes/songs.py",
+      "fanIn": 1,
+      "name": "songs.py"
+    },
+    {
+      "id": "file:tests/test_search.py",
+      "fanIn": 1,
+      "name": "test_search.py"
+    },
+    {
+      "id": "file:seed_data.py",
+      "fanIn": 0,
+      "name": "seed_data.py"
+    },
+    {
+      "id": "document:README.md",
+      "fanIn": 0,
+      "name": "README.md"
+    },
+    {
+      "id": "config:requirements.txt",
+      "fanIn": 0,
+      "name": "requirements.txt"
+    },
+    {
+      "id": "file:routes/__init__.py",
+      "fanIn": 0,
+      "name": "__init__.py"
+    },
+    {
+      "id": "file:services/__init__.py",
+      "fanIn": 0,
+      "name": "__init__.py"
+    },
+    {
+      "id": "file:tests/__init__.py",
+      "fanIn": 0,
+      "name": "__init__.py"
+    }
+  ],
+  "fanOutRanking": [
+    {
+      "id": "file:routes/songs.py",
+      "fanOut": 6,
+      "name": "songs.py"
+    },
+    {
+      "id": "file:app.py",
+      "fanOut": 5,
+      "name": "app.py"
+    },
+    {
+      "id": "file:tests/test_playlists.py",
+      "fanOut": 5,
+      "name": "test_playlists.py"
+    },
+    {
+      "id": "file:tests/test_streaks.py",
+      "fanOut": 5,
+      "name": "test_streaks.py"
+    },
+    {
+      "id": "file:tests/test_search.py",
+      "fanOut": 5,
+      "name": "test_search.py"
+    },
+    {
+      "id": "file:routes/playlists.py",
+      "fanOut": 4,
+      "name": "playlists.py"
+    },
+    {
+      "id": "file:routes/users.py",
+      "fanOut": 4,
+      "name": "users.py"
+    },
+    {
+      "id": "file:services/playlist_service.py",
+      "fanOut": 3,
+      "name": "playlist_service.py"
+    },
+    {
+      "id": "file:services/streak_service.py",
+      "fanOut": 3,
+      "name": "streak_service.py"
+    },
+    {
+      "id": "file:services/search_service.py",
+      "fanOut": 3,
+      "name": "search_service.py"
+    },
+    {
+      "id": "file:seed_data.py",
+      "fanOut": 2,
+      "name": "seed_data.py"
+    },
+    {
+      "id": "file:services/notification_service.py",
+      "fanOut": 2,
+      "name": "notification_service.py"
+    },
+    {
+      "id": "document:README.md",
+      "fanOut": 2,
+      "name": "README.md"
+    },
+    {
+      "id": "file:routes/feed.py",
+      "fanOut": 2,
+      "name": "feed.py"
+    },
+    {
+      "id": "file:services/feed_service.py",
+      "fanOut": 2,
+      "name": "feed_service.py"
+    },
+    {
+      "id": "file:models.py",
+      "fanOut": 0,
+      "name": "models.py"
+    },
+    {
+      "id": "config:requirements.txt",
+      "fanOut": 0,
+      "name": "requirements.txt"
+    },
+    {
+      "id": "file:routes/__init__.py",
+      "fanOut": 0,
+      "name": "__init__.py"
+    },
+    {
+      "id": "file:services/__init__.py",
+      "fanOut": 0,
+      "name": "__init__.py"
+    },
+    {
+      "id": "file:tests/__init__.py",
+      "fanOut": 0,
+      "name": "__init__.py"
+    }
+  ],
+  "bfsTraversal": {
+    "startNode": "file:app.py",
+    "order": [
+      "file:app.py",
+      "file:routes/playlists.py",
+      "file:routes/users.py",
+      "file:routes/songs.py",
+      "file:routes/feed.py",
+      "file:models.py",
+      "file:services/playlist_service.py",
+      "file:services/notification_service.py",
+      "file:services/streak_service.py",
+      "file:services/search_service.py",
+      "file:services/feed_service.py"
+    ],
+    "depthMap": {
+      "file:app.py": 0,
+      "file:routes/playlists.py": 1,
+      "file:routes/users.py": 1,
+      "file:routes/songs.py": 1,
+      "file:routes/feed.py": 1,
+      "file:models.py": 1,
+      "file:services/playlist_service.py": 2,
+      "file:services/notification_service.py": 2,
+      "file:services/streak_service.py": 2,
+      "file:services/search_service.py": 2,
+      "file:services/feed_service.py": 2
+    },
+    "byDepth": {
+      "0": [
+        "file:app.py"
+      ],
+      "1": [
+        "file:routes/playlists.py",
+        "file:routes/users.py",
+        "file:routes/songs.py",
+        "file:routes/feed.py",
+        "file:models.py"
+      ],
+      "2": [
+        "file:services/playlist_service.py",
+        "file:services/notification_service.py",
+        "file:services/streak_service.py",
+        "file:services/search_service.py",
+        "file:services/feed_service.py"
+      ]
+    }
+  },
+  "nonCodeFiles": {
+    "documentation": [
+      {
+        "id": "document:README.md",
+        "name": "README.md",
+        "summary": "Project overview describing app structure, setup instructions, and the five open bugs to fix."
+      }
+    ],
+    "infrastructure": [],
+    "data": [],
+    "config": [
+      {
+        "id": "config:requirements.txt",
+        "name": "requirements.txt",
+        "summary": "Python dependency manifest: Flask, Flask-SQLAlchemy, SQLAlchemy, python-dotenv, pytest."
+      },
+      {
+        "id": "config:.understand-anything/.understandignore",
+        "name": ".understandignore",
+        "summary": "Ignore-pattern configuration for the analysis tool."
+      }
+    ]
+  },
+  "clusters": [],
+  "layers": {
+    "count": 5,
+    "list": [
+      {
+        "id": "layer:api",
+        "name": "API Layer",
+        "description": "Flask blueprints exposing HTTP routes for playlists, users, songs, and the friends activity feed, translating requests into service calls."
+      },
+      {
+        "id": "layer:service",
+        "name": "Service Layer",
+        "description": "Business logic modules for playlists, listening streaks, notifications, song search, and the activity feed that sit between the routes and the ORM models."
+      },
+      {
+        "id": "layer:app-core",
+        "name": "App Core & Data Model",
+        "description": "The Flask application factory, SQLAlchemy ORM models, and the seed script that every service and test depends on for database access."
+      },
+      {
+        "id": "layer:test",
+        "name": "Test Layer",
+        "description": "Pytest suites covering the playlist, streak, and search services against the app and models."
+      },
+      {
+        "id": "layer:project-meta",
+        "name": "Project Meta",
+        "description": "Project-level documentation and configuration, including the bug-hunt README, Python dependency manifest, and the codebase-analysis tool's ignore rules."
+      }
+    ]
+  },
+  "nodeSummaryIndex": {
+    "file:app.py": {
+      "name": "app.py",
+      "type": "file",
+      "summary": "Flask application factory that configures the database, registers all route blueprints, and creates tables on startup."
+    },
+    "file:models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Defines the SQLAlchemy ORM data model: Users, Songs, Tags, ListeningEvents, Ratings, Playlists, Notifications."
+    },
+    "file:seed_data.py": {
+      "name": "seed_data.py",
+      "type": "file",
+      "summary": "Standalone script that resets and seeds the database with sample data."
+    },
+    "file:services/playlist_service.py": {
+      "name": "playlist_service.py",
+      "type": "file",
+      "summary": "Playlist creation and retrieval logic. Note: get_playlist_songs returns songs[:-1], silently dropping the last song — a suspected bug."
+    },
+    "file:services/streak_service.py": {
+      "name": "streak_service.py",
+      "type": "file",
+      "summary": "Listening-streak logic. Note: update_listening_streak only increments on consecutive days if today.weekday() != 6 (Sunday), so a consecutive listen on Sunday resets the streak instead of incrementing — a suspected bug."
+    },
+    "file:tests/test_playlists.py": {
+      "name": "test_playlists.py",
+      "type": "file",
+      "summary": "Pytest suite for the playlist service."
+    },
+    "file:tests/test_streaks.py": {
+      "name": "test_streaks.py",
+      "type": "file",
+      "summary": "Pytest suite for the streak service, including test_streak_increments_on_sunday which targets the Sunday bug."
+    },
+    "file:routes/playlists.py": {
+      "name": "playlists.py",
+      "type": "file",
+      "summary": "Flask blueprint exposing playlist HTTP routes."
+    },
+    "file:routes/users.py": {
+      "name": "users.py",
+      "type": "file",
+      "summary": "Flask blueprint exposing user-related HTTP routes."
+    },
+    "file:services/notification_service.py": {
+      "name": "notification_service.py",
+      "type": "file",
+      "summary": "Notification creation/retrieval, adding songs to playlists, and saving song ratings. Note: rate_song does not create a notification when a song is rated, unlike add_to_playlist — a suspected bug (issue #4 in README)."
+    },
+    "file:routes/songs.py": {
+      "name": "songs.py",
+      "type": "file",
+      "summary": "Flask blueprint for song-related HTTP routes: search, detail, rating, listen-tracking."
+    },
+    "file:services/search_service.py": {
+      "name": "search_service.py",
+      "type": "file",
+      "summary": "Song search and lookup logic. Note: search_songs does an outerjoin against song_tags without .distinct(), producing duplicate rows for multi-tag songs — a suspected bug (issue #3 in README)."
+    },
+    "file:tests/test_search.py": {
+      "name": "test_search.py",
+      "type": "file",
+      "summary": "Pytest suite for the search service covering duplicate-prevention behavior."
+    },
+    "document:README.md": {
+      "name": "README.md",
+      "type": "document",
+      "summary": "Project overview describing app structure, setup instructions, and the five open bugs to fix."
+    },
+    "config:requirements.txt": {
+      "name": "requirements.txt",
+      "type": "config",
+      "summary": "Python dependency manifest: Flask, Flask-SQLAlchemy, SQLAlchemy, python-dotenv, pytest."
+    },
+    "file:routes/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker."
+    },
+    "file:routes/feed.py": {
+      "name": "feed.py",
+      "type": "file",
+      "summary": "Flask Blueprint for friends-listening-now and activity-feed HTTP endpoints."
+    },
+    "file:services/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker."
+    },
+    "file:services/feed_service.py": {
+      "name": "feed_service.py",
+      "type": "file",
+      "summary": "Friends Listening Now and activity feed logic. Note: contains the open 'shows people from yesterday' bug (issue #2 in README) — the RECENT_THRESHOLD/cutoff filtering logic is suspect."
+    },
+    "file:tests/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for pytest discovery."
+    },
+    "config:.understand-anything/.understandignore": {
+      "name": ".understandignore",
+      "type": "config",
+      "summary": "Ignore-pattern configuration for the analysis tool."
+    }
+  },
+  "totalNodes": 21,
+  "totalEdges": 53
+}

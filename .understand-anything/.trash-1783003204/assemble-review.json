@@ -1,0 +1,15 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "Input (80 nodes, 169 edges) equals output (80 nodes, 169 edges); no nodes or edges were dropped during merge.",
+    "All 4 batch files inspected directly: every node already had a well-formed id, a known type (file/function/class/document/config), and a valid complexity value (simple/moderate/complex). No 'no id', unknown-type, or unknown-complexity cases found, and no ID prefix corrections were necessary.",
+    "Cross-checked all 21 entries in the import map against assembled-graph.json: every expected file-to-file 'imports' edge (e.g. routes/users.py -> app.py/models.py/notification_service.py/streak_service.py, all service files -> app.py/models.py, all three test files -> app.py/models.py/their respective service) is already present. No cross-batch edges were missing, consistent with the merge report's 'Recovered 0 imports edges' line (the edges were already produced correctly per-batch).",
+    "Tested-by linker report (3 production nodes tagged 'tested', 0 tested_by edges from path-convention) is consistent with graph contents: services/playlist_service.py, services/streak_service.py, and services/search_service.py all carry a 'tested' tag and have explicit tested_by edges to their corresponding test files, and 0 additional path-convention edges were needed since no other production/test file pairs exist.",
+    "No dangling edges, malformed nodes, or type/complexity anomalies were found; assembled-graph.json was left unmodified since no correction was warranted."
+  ]
+}
